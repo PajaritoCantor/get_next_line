@@ -71,6 +71,14 @@ Tienes que decirle a tu función qué tipo de acceso deseas. Esto se hace con ba
 
 El valor de retorno de open() es un descriptor de archivo, un pequeño entero no negativo que es un índice de una entrada en la tabla de descriptores de archivos abiertos del proceso. Si hay un error en alguna parte, la función devolverá -1 como sinónimo de error.
 
+## read ()
+
+La función tiene un prototipo de esta manera:
+
+**ssize_t read(int fildes, void *buf, size_t nbyte);**
+
+Esta función intenta leer nbytebytes de datos del objeto al que hace referencia el descriptor fildesen el búfer al que apunta buf. La función read() comienza en una posición dada por el puntero asociado con fildes. Al final, el puntero se incrementa según el número de bytes ( nbyte) realmente leídos.
+
 ## Static Variables in C
 
 Las variables estáticas tienen la propiedad de preservar su valor incluso después de que estén fuera de su alcance. Por lo tanto, una variable estática conserva su valor anterior en su ámbito anterior y no se inicializa nuevamente en el nuevo ámbito. 
