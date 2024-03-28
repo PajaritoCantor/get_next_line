@@ -6,23 +6,37 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 19:52:23 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/03/25 17:24:36 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:59:01 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+
 size_t	ft_strlen(const char *s)
 {
-	size_t	i;
+	size_t	len;
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
+}
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	unsigned char *d;
+	unsigned char *s;
+	
+	if (!dst && !src)
+		return (NULL);
+	d = (unsigned char *)dst;
+	s = (unsigned char *)src;
+	while (n--)
+		*d++ = *s++;
+	return (dst);
 }
 
-char	ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	size_t	len;
 	char	*dup;
@@ -35,23 +49,14 @@ char	ft_strdup(const char *s1)
 	return (dup);
 }
 
-char	ft_strchr(const char *s, int c)
-{
-	while (*s && *s != (char) c)
-		s++;
-	if (*s == (char)c || !c)
-		return ((char *)s);
-	return (NULL);
-}
-
-char	ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*substr;
 	size_t	slen;
 
 	if (!s)
 		return (NULL);
-	len = ft_strlen(s);
+	slen = ft_strlen(s);
 	if (start >= len)
 		return (ft_strdup(""));
 	if (len > slen - start)
@@ -64,7 +69,7 @@ char	ft_substr(char const *s, unsigned int start, size_t len)
 	return (substr);
 }
 
-char	ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*result;
 	size_t	len1;
@@ -74,10 +79,16 @@ char	ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
-	result = malloc(sizeof(char) * (len1 + len2 + 1));
+	result =(char *)malloc(sizeof(char) * (len1 + len2 + 1));
 	if (!result)
+	{
+		free(s1);
 		return (NULL);
+	}
 	ft_memcpy(result, s1, len1);
+	free(s1);
 	ft_memcpy(result + len1, s2, len2 + 1);
+	if(len1 + len2 > 0 && *(result + len1 + len2 -1) == '\n')
+		*(result + len1 + len2 -1) = '\0';
 	return (result);
 }
