@@ -6,98 +6,121 @@
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 15:36:12 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/03/31 01:16:00 by jurodrig         ###   ########.fr       */
+/*   Updated: 2024/04/01 14:26:26 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*read_line(int fd, char *left_c, char *buffer);
-static char *_set_line(char *line_buffer);
-static char	*ft_strchr(char *s, int c);
-
-char *get_next_line(int fd)
+char	*init_line(char *stash, int *eol_loc)
 {
-    char    *buffer;
-    char    *line;
-    static char *left_c;
+	size_t	len;
+	char	*line;
 
-    if (!fd)
-        return NULL;
-    buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-    if (!buffer)
-    {    
-        free (left_c);
-        free (buffer);
-        left_c = NULL;
-        buffer = NULL;
-        return (NULL);
-    }
-    if (!buffer)
-        return (NULL);
-    line = read_line(fd, left_c, buffer);
-    free (buffer);
-    buffer = NULL;
-    if (!line)
-        return (NULL);
-    left_c = _set_line(line);
-    return (line);
+	len = 0;
+	while (stash[len] && stash[len] != '\n')
+		len++;
+	len++;
+	line = malloc(sizeof(char) * (len + 1));
+	if (!line)
+		return (NULL);
+	ft_memcpy(line, stash, len);
+	line[len] = '\0';
+	if (len > 0 && line[len - 1] == '\n')
+		*eol_loc = len - 1;
+	return (line);
 }
 
-static char *_set_line(char *line_buffer)
+size_t	locate_eol(char *line)
 {
-    char    *left_c;
-    ssize_t     i;
+	size_t	i;
 
-    i = 0;
-    while(line_buffer[i] != '\n' && line_buffer[i] != '\0')
-    i++;
-    if (line_buffer[i] == 0 || line_buffer[1] == 0)
-        return (NULL);
-    left_c = ft_substr(line_buffer, i + 1, ft_strlen(line_buffer) - i);
-    if (*left_c == 0)
+	i = 0;
+	if (!line)
+		return (-1);
+	while (i < BUFFER_SIZE)
+	{
+		if (line[i] == '\n' || line[i] == '\0')
+			return (i + 1);
+		i++;
+	}
+	return (i);
+}
+
+char	*extract_line(char *line, char *stash, int *eol_loc, int fd)
+{
+	char	buffer[BUFFER_SIZE + 1];
+	ssize_t	read_check;
+	size_t	line_size;
+	char	*temp;
+
+	while (*eol_loc == -1)
+	{
+		ft_bzero(buffer, (BUFFER_SIZE + 1));
+		read_check = read(fd, buffer, BUFFER_SIZE);
+		if (read_check == -1)
+		{
+			free(line);
+			ft_bzero(stash, (BUFFER_SIZE + 1));
+			return (NULL);
+		}
+		line_size = locate_eol(buffer);
+		ft_strlcpy_gnl(stash, &buffer[line_size], (BUFFER_SIZE + 1));
+		buffer[line_size] = '\0';
+		temp = ft_strjoin_gnl(line, buffer, eol_loc);
+		if (!temp)
+		{
+			free(line);
+			return (NULL);
+		}
+		line = temp;
+		if (read_check == 0)
+		{
+			ft_bzero(stash, BUFFER_SIZE + 1);
+			break ;
+		}
+	}
+	return (line);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	stash[BUFFER_SIZE + 1];
+	char		*line;
+	int			eol_loc;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	eol_loc = -1;
+	line = init_line(stash, &eol_loc);
+	if (!line)
+		return (NULL);
+	ft_strlcpy_gnl(stash, &stash[eol_loc + 1], BUFFER_SIZE + 1);
+	line = extract_line(line, stash, &eol_loc, fd);
+	if (!line || line[0] == '\0')
+	{
+		free(line);
+		return (NULL);
+	}
+	return (line);
+}
+/*
+#include <fcntl.h>
+#include <stdio.h>
+int main(void)
+{
+    int i = 0;
+    int fd = open("test.txt", O_RDONLY);
+    char *str;
+    while (i < 5)
     {
-        free(left_c);
-        left_c = NULL;
+        str = get_next_line(fd);
+        printf("%s", str);
+        free(str);
+        i++;
     }
-    line_buffer[i + 1] = 0;
-    return (left_c);
+    close(fd);
+    system("leaks -q a.out");
+    return (0);
 }
-
-static char *read_line(int fd, char *left_c, char *buffer)
-{
-    ssize_t b_read;
-    char    *tmp;
-
-        while ((b_read = 1) > 0)
-    {
-        b_read = read(fd, buffer, BUFFER_SIZE);
-        if (b_read == -1)
-    {
-        free(left_c);
-        return (0);
-    }
-        else if (b_read == 0)
-        break ;
-    buffer[b_read] = '\0';
-     if (!left_c)
-         left_c = ft_strdup("");
-    tmp = left_c;
-     left_c = ft_strjoin(tmp, buffer);
-    free (tmp);
-    tmp = NULL;
-    if (ft_strchr(buffer, '\n'))
-        break;
-    }
-    return (left_c);
-}
-
-static char	*ft_strchr(char *s, int c)
-{
-    while (*s && *s != (char)c)
-        s++;
-    if (*s == (char)c || !c)
-        return ((char *)s);
-    
-    return (NULL);
-}
+*/
