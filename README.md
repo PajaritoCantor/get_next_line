@@ -22,24 +22,26 @@
 
    4.3. [Realloc](#Realloc)
 
-5. [Diseño de memoria de programas C](
+5. [Diseño de memoria de programas C](#Diseños-de-memoria-de-programas-C)
+
+   5.1. [Segmento de texto](#Segmento-de-texto)
 
 ## Introducción a los descriptores de archivo (fd)
 
 Los descriptores de archivo son una parte integral de cómo los sistemas operativos interactúan con los archivos. Son identificadores únicos, generalmente representados como números enteros, que se asignan a un archivo abierto o a un flujo de datos.
 Cada vez que un archivo se abre en un sistema operativo, se crea un descriptor de archivo. Este descriptor se utiliza luego para leer, escribir o realizar otras operaciones con el archivo. Cuando el archivo se cierra, el descriptor de archivo se libera y puede ser reutilizado. Los descriptores de archivo no sólo se utilizan para los archivos regulares, sino también para otros tipos de recursos, como los sockets de red y los tubos (pipes). En todos estos casos, el descriptor de archivo proporciona una forma de referirse al recurso abierto. En el contexto de la programación, los descriptores de archivo se utilizan en varias funciones de la biblioteca estándar de C, como open, read, write y close, que permiten al programador interactuar con los archivos. Es importante tener en cuenta que los descriptores de archivo son específicos del proceso. Esto significa que dos procesos diferentes pueden tener descriptores de archivo con el mismo número, pero cada uno de ellos se refiere a un archivo diferente.
 
-0: este descriptor de archivo representa la entrada estándar (=> entrada estándar, el terminal). Este es el descriptor de archivo utilizado al leer la entrada del usuario desde el terminal.
+**0**: este descriptor de archivo representa la entrada estándar (=> entrada estándar, el terminal). Este es el descriptor de archivo utilizado al leer la entrada del usuario desde el terminal.
 
-1: este descriptor de archivo representa la salida estándar (=> salida estándar, el terminal). Este es el descriptor de archivo utilizado al escribir en la terminal.
+**1**: este descriptor de archivo representa la salida estándar (=> salida estándar, el terminal). Este es el descriptor de archivo utilizado al escribir en la terminal*.
 
-2: este descriptor de archivo representa el stderr (=> salida de error estándar, el terminal). Este es el descriptor de archivo que se utiliza al escribir un error en la terminal; la información se escribe de la misma manera, pero un programa que registra errores en un archivo puede redirigir todo lo escrito en el descriptor de archivo stderr a un archivo. El sistema operativo lo gestiona de otra manera.
+**2**: este descriptor de archivo representa el stderr (=> salida de error estándar, el terminal). Este es el descriptor de archivo que se utiliza al escribir un error en la terminal; la información se escribe de la misma manera, pero un programa que registra errores en un archivo puede redirigir todo lo escrito en el descriptor de archivo stderr a un archivo. El sistema operativo lo gestiona de otra manera.
 
 ## Funciones
 
 ## Open()
 
-#include <fcntl.h>
+      #include <fcntl.h>
 
 Open es una función que se utiliza para abrir un archivo en un modo específico (como lectura, escritura, etc.). 
 
@@ -146,13 +148,9 @@ Se utiliza para cambiar dinámicamente la asignación de memoria de una memoria 
 
 Una representación de memoria típica de un programa C consta de las siguientes secciones.
 
-1. Text segment  (i.e. instructions)
-2. Initialized data segment 
-3. Uninitialized data segment  (bss)
-4. Heap 
-5. Stack
+## Segmento de texto:  
 
-**1. Segmento de texto:**  Un segmento de texto, también conocido como segmento de código o simplemente como texto, es una de las secciones de un programa en un archivo objeto o en la memoria, que contiene instrucciones ejecutables.
+Un segmento de texto, también conocido como segmento de código o simplemente como texto, es una de las secciones de un programa en un archivo objeto o en la memoria, que contiene instrucciones ejecutables.
 Como región de memoria, se puede colocar un segmento de texto debajo del *heap* o el *stack* para evitar que los montones y los desbordamientos de pila lo sobrescriban.
 
 Por lo general, el segmento de texto se puede compartir, por lo que solo es necesario que haya una copia en la memoria para los programas que se ejecutan con frecuencia, como los editores de texto, el compilador de C, los shells, etc. Además, el segmento de texto suele ser de sólo lectura, para evitar que un programa modifique accidentalmente sus instrucciones.
