@@ -24,6 +24,7 @@
 
 5. [Diseño de memoria de programas C](#Diseño-de-memoria-de-programas-C)
 
+
    5.1. [Segmento de datos inicializados](#Segmento-de-datos-inicializados)
    5.2. [Segmento de datos no inicializados](#Segmento-de-datos-no-inicializados)
    5.3 [Stack](#Stack)
