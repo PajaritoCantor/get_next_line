@@ -1,16 +1,16 @@
 # INDICE
 
-1. [INTRODUCCIÓN A LOS DESCRIPTORES DE ARCHIVO](#introducción-a-los-descriptores-de-archivo-)
+1. [Introducción a los descriptores de archivo](#introduccion-a-los-descriptores-de-archivo-)
 
-    1.1. [Descriptores de archivos estándar](#Descriptores-de-archivos-estandar-)
+    1.1. [Descriptores de archivos estándar](#descriptores-de-archivos-estandar-)
    
-2. [Funciones](#Funciones)
+2. [Funciones](#funciones)
 
-    2.1. [Open](#Open)
+    2.1. [Open](#open)
    
-    2.2. [Read](#Read)
+    2.2. [Read](#read)
    
-3. [Variables estáticas en C](#Variables-estáticas-en-C)
+3. [Variables estáticas en C](#variables-estaticas-en-C)
 
 ## 1. Introducción a los descriptores de archivo
 
