@@ -10,7 +10,7 @@
    
    2.3. [Read](#Read)
    
-4. [Variables estáticas en C](#variables-estaticas-en-C)
+3. [Variables estáticas en C](#variables-estaticas-en-C)
 
 ## Introducción a los descriptores de archivo
 
@@ -69,7 +69,7 @@ La función tiene un prototipo de esta manera:
 Esta función intenta leer nbytebytes de datos del objeto al que hace referencia el descriptor fildesen el búfer al que apunta buf. La función read() comienza en una posición dada por el puntero asociado con fildes. Al final, el puntero se incrementa según el número de bytes ( nbyte) realmente leídos.
 
 
-## 3. Variables estáticas en C
+## Variables estáticas en C
 
 Las variables estáticas tienen la propiedad de preservar su valor incluso después de que estén fuera de su alcance. Por lo tanto, una variable estática conserva su valor anterior en su ámbito anterior y no se inicializa nuevamente en el nuevo ámbito. 
 
