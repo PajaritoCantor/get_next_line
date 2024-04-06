@@ -1,33 +1,36 @@
-## 1. **GET_NEXT_LINE**
+# GET_NEXT_LINE
 
-La función get_next_line lee una línea desde un descriptor de archivo dado. La línea se define como una secuencia de caracteres terminada por '\n' o EOF (fin de archivo). La función se utiliza en un bucle para leer un archivo línea por línea.
+La función get_next_line lee una línea desde un descriptor de archivo dado. 
+* La línea se define como una secuencia de caracteres terminada por '\n' o EOF (fin de archivo). La función se utiliza en un bucle para leer un archivo línea por línea.
 
-## **2. Orden de construcción de las funciones auxiliares**
+## Orden de construcción de las funciones auxiliares
 
-### **2. 1. Funciones auxiliares**
+### Funciones auxiliares**
 
-#### **2. 1. 1. ft_memcpy**
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	unsigned char	*d;
-	unsigned char	*s;
-
-	if (!dst && !src)
-		return (NULL);
-	d = (unsigned char *)dst;
-	s = (unsigned char *)src;
-	while (n--)
-		*d++ = *s++;
-	return (dst);
-}
+#### ft_memcpy**
 
 Esta función se utiliza para copiar bloques de memoria de un lugar a otro. En el contexto de get_next_line, se utiliza en la función que inicia la línea, para copiar una cadena a una nueva cadena de texto.
 
+		void	*ft_memcpy(void *dst, const void *src, size_t n)
+		{
+			unsigned char	*d;
+			unsigned char	*s;
+		
+			if (!dst && !src)
+				return (NULL);
+			d = (unsigned char *)dst;
+			s = (unsigned char *)src;
+			while (n--)
+				*d++ = *s++;
+			return (dst);
+		}
+
 * Asigna un puntero al inicio de la cadena de destino.
 * Asigna un puntero al inicio de la cadena de origen.
+* Comrpueba que destino e inicio no estén vacías. Si es así, returna NULL
+* Castea las cadenas como *unsigned char*
 * copia *n* bytes de la cadena de origen a la cadena de destino.
-* Devuelve la cadena de destino.
+* Devuelve *la cadena de destino*
 
 
 #### **2. 1. 2. ft_bzero**
