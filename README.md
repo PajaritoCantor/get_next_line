@@ -22,6 +22,8 @@
 
    4.3. [Realloc](#Realloc)
 
+5. [Diseño de memoria de programas C](
+
 ## Introducción a los descriptores de archivo (fd)
 
 Los descriptores de archivo son una parte integral de cómo los sistemas operativos interactúan con los archivos. Son identificadores únicos, generalmente representados como números enteros, que se asignan a un archivo abierto o a un flujo de datos.
@@ -113,7 +115,7 @@ Se utiliza para asignar dinámicamente un único bloque grande de memoria con el
 
 Ejemplo:
 
-      ***ptr = (cast-type) malloc(byte-size)**
+      ptr = (cast-type) malloc(byte-size)**
 
 ### Calloc: 
 El método "calloc" o "asignación contigua" en C se utiliza apra asignar dinamicamente el número especificado de bloques de memoria del tipo especificado. 
@@ -121,24 +123,24 @@ El método "calloc" o "asignación contigua" en C se utiliza apra asignar dinami
 - inicializa cada bloque con un valor predeterminado '0'
 - Tiene dos parámetros o argumentos en comparación con malloc()
 
-      ***ptr = (cast-type*)calloc(n, element-size);**
+        ptr = (cast-type*)calloc(n, element-size);**
 
 Ejemplo:
 
-      ***ptr = (float*)calloc(25, sizeof(float));**
+       ptr = (float*)calloc(25, sizeof(float));**
 Este parámetro asigna espacio contiguo en una memoria de 25 elementos cada uno con el tamaño de float
 
-**Free**: 
+### Free: 
 
-*free(ptr);*
+      free(ptr);
 
 Se utiliza para desasignar dinámicamente la memoria. La memoria asignada mediante las funciones malloc() y calloc() no se desasigna por sí sola. Por lo tanto, se utiliza el método free() siempre que se realiza la asignación de memoria dinámica. Ayuda a reducir el desperdicio de memoria liberándola.
 
-**Realloc**:
+### Realloc:
 
 Se utiliza para cambiar dinámicamente la asignación de memoria de una memoria previamente asignada. En otras palabras, si la memoria previamente asignada con la ayuda de malloc o calloc es insuficiente, se puede utilizar realloc para reasignar memoria dinámicamente . La reasignación de memoria mantiene el valor ya presente y los nuevos bloques se inicializarán con el valor basura predeterminado.
 
-      ***ptr = realloc(ptr, newSize);**
+      ptr = realloc(ptr, newSize);**
 
 ## Diseño de memoria de programas C
 
