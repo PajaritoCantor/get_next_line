@@ -12,6 +12,8 @@
    
 3. [Variables estáticas en C](#variables-estáticas-en-C)
 
+4. [Asignación de memoria dinámica en C](#Asignación-de-memoria-dinámica-en-C)
+
 ## Introducción a los descriptores de archivo
 
 Los descriptores de archivo son una parte integral de cómo los sistemas operativos interactúan con los archivos. Son identificadores únicos, generalmente representados como números enteros, que se asignan a un archivo abierto o a un flujo de datos.
@@ -75,7 +77,7 @@ Las variables estáticas tienen la propiedad de preservar su valor incluso despu
 
 Sintaxis:
 
-**static data_type var_name = var_value;**
+      **static data_type var_name = var_value;**
 
 **1)** Una variable int estática permanece en la memoria mientras se ejecuta el programa. Una variable normal o automática se destruye cuando finaliza una llamada a una función donde se declaró la variable.
 
@@ -93,7 +95,7 @@ Sintaxis:
   * Cualquiera que sea el caso, todos los miembros de la estructura deben residir en el mismo segmento de memoria porque el valor del elemento de la estructura se obtiene contando el desplazamiento del elemento desde la dirección inicial de la estructura.
    * Separar un solo miembro en un segmento de datos anula el propósito de la estructura y es posible tener una estructura completa como estática.
 
-## Dynamic Memory Allocation in C **(Asignación de memoria dinámica en C)**
+## Asignación de memoria dinámica en C
 
 Es el procedimiento en el que el tamaño de una estructura de datos (como una matriz) se cambia durante el tiempo de ejecución. Existen **cuatro funciones** en C definidas en el archivo de encabezado **<stdlib.h>** para facilitar este proceso.
 
@@ -102,18 +104,18 @@ Es el procedimiento en el que el tamaño de una estructura de datos (como una ma
 
 Ejemplo:
 
-***ptr = (cast-type) malloc(byte-size)**
+      ***ptr = (cast-type) malloc(byte-size)**
 
 **2. calloc:** El método "calloc" o "asignación contigua" en C se utiliza apra asignar dinamicamente el número especificado de bloques de memoria del tipo especificado. 
  * Es muy similar a malloc() pero tiene dos puntos diferentes y estos son:
 - inicializa cada bloque con un valor predeterminado '0'
 - Tiene dos parámetros o argumentos en comparación con malloc()
 
-***ptr = (cast-type*)calloc(n, element-size);**
+      ***ptr = (cast-type*)calloc(n, element-size);**
 
 Ejemplo:
 
-***ptr = (float*)calloc(25, sizeof(float));**
+      ***ptr = (float*)calloc(25, sizeof(float));**
 Este parámetro asigna espacio contiguo en una memoria de 25 elementos cada uno con el tamaño de float
 
 **3 free**: 
@@ -126,7 +128,7 @@ Se utiliza para desasignar dinámicamente la memoria. La memoria asignada median
 
 Se utiliza para cambiar dinámicamente la asignación de memoria de una memoria previamente asignada. En otras palabras, si la memoria previamente asignada con la ayuda de malloc o calloc es insuficiente, se puede utilizar realloc para reasignar memoria dinámicamente . La reasignación de memoria mantiene el valor ya presente y los nuevos bloques se inicializarán con el valor basura predeterminado.
 
-***ptr = realloc(ptr, newSize);**
+      ***ptr = realloc(ptr, newSize);**
 
 ## Diseño de memoria de programas C
 
