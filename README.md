@@ -14,7 +14,7 @@
 
 4. [Asignación de memoria dinámica en C](#Asignación-de-memoria-dinámica-en-C)
 
-   4.1. [malloc](#malloc)
+   4.1. [Malloc](#Malloc)
 
 ## Introducción a los descriptores de archivo
 
@@ -101,7 +101,8 @@ Sintaxis:
 
 Es el procedimiento en el que el tamaño de una estructura de datos (como una matriz) se cambia durante el tiempo de ejecución. Existen **cuatro funciones** en C definidas en el archivo de encabezado **<stdlib.h>** para facilitar este proceso.
 
-**malloc:** Se utiliza para asignar dinámicamente un único bloque grande de memoria con el tamaño especificado. 
+#### Malloc: 
+Se utiliza para asignar dinámicamente un único bloque grande de memoria con el tamaño especificado. 
 *  Devuelve un puntero de tipo void que se puede convertir en un puntero de cualquier forma. No inicializa la memoria en el momento de la ejecución, por lo que inicialmente ha inicializado cada bloque con el valor basura predeterminado. 
 
 Ejemplo:
