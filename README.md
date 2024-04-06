@@ -1,9 +1,13 @@
-# Índice
+# INDICE
 1. [INTRODUCCIÓN A LOS DESCRIPTORES DE ARCHIVO](#introducción-a-los-descriptores-de-archivo-)
 
-    1.1 [Descriptores de archivos estándar](#Descriptores-de-archivos-estandar-)
-3. [Open](#Open)
-- Read()
+    1.1. [Descriptores de archivos estándar](#Descriptores-de-archivos-estandar-)
+   
+    1.2. [Funciones](#Funciones)
+
+    1.3. [Open](#Open)
+   
+    1.4. [Read](#Read-)
 
 ## 1. Introducción a los descriptores de archivo
 
@@ -21,21 +25,27 @@ Los descriptores de archivo son una parte integral de cómo los sistemas operati
 
 2: este descriptor de archivo representa el stderr (=> salida de error estándar, el terminal). Este es el descriptor de archivo que se utiliza al escribir un error en la terminal; la información se escribe de la misma manera, pero un programa que registra errores en un archivo puede redirigir todo lo escrito en el descriptor de archivo stderr a un archivo. El sistema operativo lo gestiona de otra manera.
 
+## 2. Funciones
+
 ## 2. Open()
 
 #include <fcntl.h>
 
-Esta función le permitirá abrir y acceder a un archivo. Está prototipado de esta manera:
+Open es una función que se utiliza para abrir un archivo en un modo específico (como lectura, escritura, etc.). 
 
-int open (const char path, int flags [, int mode ]);*
+* Se le proporciona un path al archivo y flags que determinan el modo de apertura.
 
-### Path
+        int open (const char path, int flags [, int mode ]);*
+
+### 2.1 Componentes
+
+#### Path
 
 Corresponde al título del archivo que desea abrir/crear.
 
 También se refiere a la ubicación del archivo. Si no está trabajando en el mismo directorio que el archivo, puede proporcionar una ruta absoluta que comience con "/"
 
-### Flags
+#### Flags
 
 Tienes que decirle a tu función qué tipo de acceso deseas. Esto se hace con banderas. Aquí está la lista con la información de cada bandera:
 
@@ -53,7 +63,7 @@ Tienes que decirle a tu función qué tipo de acceso deseas. Esto se hace con ba
 
 El valor de retorno de open() es un descriptor de archivo, un pequeño entero no negativo que es un índice de una entrada en la tabla de descriptores de archivos abiertos del proceso. Si hay un error en alguna parte, la función devolverá -1 como sinónimo de error.
 
-## Read()
+## 3. Read()
 La función tiene un prototipo de esta manera:
 
 *ssize_t read(int fildes, void buf, size_t nbyte);
