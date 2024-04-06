@@ -14,7 +14,7 @@
 
 4. [Asignación de memoria dinámica en C](#Asignación-de-memoria-dinámica-en-C)
 
-   4.1[malloc](#malloc)
+   4.1. [malloc](#malloc)
 
 ## Introducción a los descriptores de archivo
 
