@@ -26,13 +26,19 @@
 
 
    5.1. [Segmento de datos inicializados](#Segmento-de-datos-inicializados)
+   
    5.2. [Segmento de datos no inicializados](#Segmento-de-datos-no-inicializados)
+   
    5.3 [Stack](#Stack)
+   
    5-4 [Heap](#Heap)
 
 ## Introducción a los descriptores de archivo (fd)
 
 Los descriptores de archivo son una parte integral de cómo los sistemas operativos interactúan con los archivos. 
+
+
+
 *   Son identificadores únicos, generalmente representados como números enteros, que se asignan a un archivo abierto o a un flujo de datos.
 *   Cada vez que un archivo se abre en un sistema operativo, se crea un descriptor de archivo. Este descriptor se utiliza luego para leer, escribir o realizar otras operaciones con el archivo. Cuando el archivo se cierra, el descriptor de archivo se libera y puede ser reutilizado. Los descriptores de  *   archivo no sólo se utilizan para los archivos regulares, sino también para otros tipos de recursos, como los sockets de red y los tubos (pipes).
 *   En todos estos casos, el descriptor de archivo proporciona una forma de referirse al recurso abierto. En el contexto de la programación, los descriptores de archivo se utilizan en varias funciones de la biblioteca estándar de C, como open, read, write y close, que permiten al programador interactuar con los archivos.
