@@ -10,7 +10,7 @@
    
    2.3. [Read](#Read)
    
-3. [Variables estáticas en C](#variables-estaticas-en-C)
+3. [Variables estáticas en C](#variables-estáticas-en-C)
 
 ## Introducción a los descriptores de archivo
 
