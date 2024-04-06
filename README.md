@@ -1,6 +1,6 @@
 # INDICE
 
-* [Introducción a los descriptores de archivo](#Introducción-a-los-descriptores-de-archivo)
+1. [Introducción a los descriptores de archivo](#Introducción-a-los-descriptores-de-archivo)
 
     * [Descriptores de archivos estandar](#descriptores-de-archivos-estandar-)
    
