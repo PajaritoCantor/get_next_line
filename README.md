@@ -92,7 +92,7 @@ Las variables estáticas tienen la propiedad de preservar su valor incluso despu
 
 Sintaxis:
 
-      **static data_type var_name = var_value;**
+      static data_type var_name = var_value;
 
 **1)** Una variable int estática permanece en la memoria mientras se ejecuta el programa. Una variable normal o automática se destruye cuando finaliza una llamada a una función donde se declaró la variable.
 
@@ -106,9 +106,9 @@ Sintaxis:
 
 **6)** Las variables estáticas no deben declararse dentro de una estructura. 
 * La razón es que el compilador de C requiere que todos los elementos de la estructura se coloquen juntos (es decir, que la asignación de memoria para los miembros de la estructura debe ser contigua).
- * Es posible declarar la estructura dentro de la función (segmento de pila) o asignar memoria dinámicamente (segmento de montón) o incluso puede ser global (BSS o segmento de datos).
-  * Cualquiera que sea el caso, todos los miembros de la estructura deben residir en el mismo segmento de memoria porque el valor del elemento de la estructura se obtiene contando el desplazamiento del elemento desde la dirección inicial de la estructura.
-   * Separar un solo miembro en un segmento de datos anula el propósito de la estructura y es posible tener una estructura completa como estática.
+* Es posible declarar la estructura dentro de la función (segmento de pila) o asignar memoria dinámicamente (segmento de montón) o incluso puede ser global (BSS o segmento de datos).
+* Cualquiera que sea el caso, todos los miembros de la estructura deben residir en el mismo segmento de memoria porque el valor del elemento de la estructura se obtiene contando el desplazamiento del elemento desde la dirección inicial de la estructura.
+* Separar un solo miembro en un segmento de datos anula el propósito de la estructura y es posible tener una estructura completa como estática.
 
 ## Asignación de memoria dinámica en C
 
