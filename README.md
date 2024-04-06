@@ -5,6 +5,8 @@
 2. [Funciones](#funciones)
 
    2.1. [Open](#Open)
+
+    2.2. [Componentes](#Componentes)
    
 2.2. [Read](#read)
    
@@ -33,7 +35,7 @@ Open es una función que se utiliza para abrir un archivo en un modo específico
 
         int open (const char path, int flags [, int mode ]);
   
-### 2.1.1 Componentes
+### Componentes
 
 #### - Path
 
