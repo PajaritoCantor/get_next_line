@@ -1,13 +1,15 @@
 # INDICE
-1. [INTRODUCCIÓN A LOS DESCRIPTORES DE ARCHIVO](#introducción-a-los-descriptores-de-archivo-)
+1. [Introducción a los descriptores de archivos estandar](#introducción-a-los-descriptores-de-archivo-)
 
     1.1. [Descriptores de archivos estándar](#Descriptores-de-archivos-estandar-)
    
-    1.2. [Funciones](#Funciones)
+2. [Funciones](#Funciones)
 
-    1.3. [Open](#Open)
+    2.1. [Open](#Open)
    
-    1.4. [Read](#Read-)
+    2.2. [Read](#Read)
+   
+3. [Variables estáticas en C](#Variables-estáticas-en-C)
 
 ## 1. Introducción a los descriptores de archivo
 
@@ -27,7 +29,7 @@ Los descriptores de archivo son una parte integral de cómo los sistemas operati
 
 ## 2. Funciones
 
-## 2. Open()
+## 2.1. Open()
 
 #include <fcntl.h>
 
@@ -35,17 +37,17 @@ Open es una función que se utiliza para abrir un archivo en un modo específico
 
 * Se le proporciona un path al archivo y flags que determinan el modo de apertura.
 
-        int open (const char path, int flags [, int mode ]);*
+        int open (const char path, int flags [, int mode ]);
+  
+### 2.1.1 Componentes
 
-### 2.1 Componentes
-
-#### Path
+#### - Path
 
 Corresponde al título del archivo que desea abrir/crear.
 
 También se refiere a la ubicación del archivo. Si no está trabajando en el mismo directorio que el archivo, puede proporcionar una ruta absoluta que comience con "/"
 
-#### Flags
+#### - Flags
 
 Tienes que decirle a tu función qué tipo de acceso deseas. Esto se hace con banderas. Aquí está la lista con la información de cada bandera:
 
@@ -59,19 +61,19 @@ Tienes que decirle a tu función qué tipo de acceso deseas. Esto se hace con ba
 
 **O_EXCL** : Impide la creación de archivos si ya existe en el directorio o ubicación.
 
-#### Valor de retorno
+#### - Valor de retorno
 
 El valor de retorno de open() es un descriptor de archivo, un pequeño entero no negativo que es un índice de una entrada en la tabla de descriptores de archivos abiertos del proceso. Si hay un error en alguna parte, la función devolverá -1 como sinónimo de error.
 
-## 3. Read()
+## 2.2. Read()
 La función tiene un prototipo de esta manera:
 
-*ssize_t read(int fildes, void buf, size_t nbyte);
+        ssize_t read(int fildes, void buf, size_t nbyte);
 
 Esta función intenta leer nbytebytes de datos del objeto al que hace referencia el descriptor fildesen el búfer al que apunta buf. La función read() comienza en una posición dada por el puntero asociado con fildes. Al final, el puntero se incrementa según el número de bytes ( nbyte) realmente leídos.
 
 
-## Variables estáticas en C
+## 3. Variables estáticas en C
 
 Las variables estáticas tienen la propiedad de preservar su valor incluso después de que estén fuera de su alcance. Por lo tanto, una variable estática conserva su valor anterior en su ámbito anterior y no se inicializa nuevamente en el nuevo ámbito. 
 
