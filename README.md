@@ -2,7 +2,7 @@
 
 1. [Introducción a los descriptores de archivo](#Introducción-a-los-descriptores-de-archivo)
 
-   - [Descriptores de archivos estandar](#Descriptores-de-archivos-estandar)
+   1.1 [Descriptores de archivos estandar](#descriptores-de-archivos-estandar)
    
 3. [Funciones](#funciones)
 
