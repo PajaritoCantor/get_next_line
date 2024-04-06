@@ -151,7 +151,7 @@ Una representación de memoria típica de un programa C consta de las siguientes
 ### Segmento de texto:  
 
 Un segmento de texto, también conocido como segmento de código o simplemente como texto, es una de las secciones de un programa en un archivo objeto o en la memoria, que contiene instrucciones ejecutables.
-Como región de memoria, se puede colocar un segmento de texto debajo del *heap* o el *stack* para evitar que los montones y los desbordamientos de pila lo sobrescriban.
+   * Como región de memoria, se puede colocar un segmento de texto debajo del *heap* o el *stack* para evitar que los montones y los desbordamientos de pila lo sobrescriban.
 
 Por lo general, el segmento de texto se puede compartir, por lo que solo es necesario que haya una copia en la memoria para los programas que se ejecutan con frecuencia, como los editores de texto, el compilador de C, los shells, etc. Además, el segmento de texto suele ser de sólo lectura, para evitar que un programa modifique accidentalmente sus instrucciones.
 
