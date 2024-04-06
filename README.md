@@ -124,16 +124,16 @@ Ejemplo:
 
 ### Calloc: 
 El método "calloc" o "asignación contigua" en C se utiliza apra asignar dinamicamente el número especificado de bloques de memoria del tipo especificado. 
-- Es muy similar a malloc(), pero tiene dos puntos diferentes:
-- inicializa cada bloque con un valor predeterminado '0'
-- Tiene dos parámetros o argumentos en comparación con malloc()
+* Es muy similar a malloc(), pero tiene dos puntos diferentes:
+* inicializa cada bloque con un valor predeterminado '0'
+* Tiene dos parámetros o argumentos en comparación con malloc()
 
         ptr = (cast-type*)calloc(n, element-size);**
 
 Ejemplo:
 
        ptr = (float*)calloc(25, sizeof(float));**
-Este parámetro asigna espacio contiguo en una memoria de 25 elementos cada uno con el tamaño de float
+* Este parámetro asigna espacio contiguo en una memoria de 25 elementos cada uno con el tamaño de float
 
 ### Free: 
 
@@ -143,7 +143,9 @@ Se utiliza para desasignar dinámicamente la memoria. La memoria asignada median
 
 ### Realloc:
 
-Se utiliza para cambiar dinámicamente la asignación de memoria de una memoria previamente asignada. En otras palabras, si la memoria previamente asignada con la ayuda de malloc o calloc es insuficiente, se puede utilizar realloc para reasignar memoria dinámicamente . La reasignación de memoria mantiene el valor ya presente y los nuevos bloques se inicializarán con el valor basura predeterminado.
+Se utiliza para cambiar dinámicamente la asignación de memoria de una memoria previamente asignada. 
+* En otras palabras, si la memoria previamente asignada con la ayuda de malloc o calloc es insuficiente, se puede utilizar realloc para reasignar memoria dinámicamente. 
+* La reasignación de memoria mantiene el valor ya presente y los nuevos bloques se inicializarán con el valor basura predeterminado.
 
       ptr = realloc(ptr, newSize);**
 
