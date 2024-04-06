@@ -1,37 +1,18 @@
-# get_next_line
-## Descriptores de archivos (FD)
+# GET_NEXT_LINE
 
-Un descriptor de archivo es una int variable que identifica de forma única un archivo abierto.
+## Introducción a los descriptores de archivo
 
-### Descriptor de archivo
+### Descriptores de archivos (FD)
 
-Este es el índice de la entrada de la tabla de archivos en la tabla de descriptores de archivos.
+Los *descriptores de archivo* son una parte integral de cómo los sistemas operativos interactúan con los archivos. Son identificadores únicos, generalmente representados como números enteros, que se asignan a un archivo abierto o a un flujo de datos.
+  * Cada vez que un archivo se abre en un sistema operativo, se crea un *descriptor de archivo*. Este descriptor se utiliza luego para *leer*, *escribir* o realizar otras operaciones con el archivo. Cuando el archivo se cierra, el *descriptor de archivo* se libera y puede ser reutilizado.
+  * Los *descriptores de archivo* no sólo se utilizan para los archivos regulares, sino también para otros tipos de recursos, como los *sockets de red* y los tubos *(pipes)*. En todos estos casos, el *descriptor de archivo* proporciona una forma de referirse al recurso abierto.
 
-### Tabla de descriptores de archivos
+En el contexto de la programación, los *descriptores de archivo* se utilizan en varias *funciones de la biblioteca estándar de C*, como *open*, *read*, *write* y *close*, que permiten al programador interactuar con los archivos.
 
-Esta es una matriz de entradas de tabla de archivos, cada proceso obtiene su propia tabla de descriptores de archivos.
+Es importante tener en cuenta que los *descriptores de archivo* son específicos del proceso. Esto significa que dos procesos diferentes pueden tener descriptores de archivo con el mismo número, pero cada uno de ellos se refiere a un archivo diferente.
 
-### Entrada de tabla de archivos
-
-Una entrada de tabla de archivos es una estructura que contiene información sobre un archivo.
-
-### Tabla de archivos globales
-
-Esta es una tabla para todo el sistema que contiene todos los archivos. (No puede contener todos los archivos a la vez, pero el sistema operativo actualizará automáticamente la tabla si solicita un archivo que no está en esta tabla).
-
-Cuando utilizas un descriptor de archivo, con la read(2)función por ejemplo, sucederá lo siguiente:
-
-Busque el archivo en la tabla de archivos globales
-
-Si se encuentra el archivo, vaya al siguiente paso.
-
-Si no se encuentra el archivo, el sistema operativo actualizará la tabla de archivos globales para que el archivo solicitado esté disponible y luego volverá al paso 1.
-
-Cree una entrada en la tabla Archivo en la tabla Descriptor de archivo para el archivo solicitado.
-
-Asigne el primer descriptor de archivo no utilizado a la entrada de la tabla de archivos creada.
-
-## Descriptores de archivos estándar
+### Descriptores de archivos estándar
 
 **0:** este descriptor de archivo representa la entrada estándar (=> entrada estándar, el terminal). Este es el descriptor de archivo utilizado al leer la entrada del usuario desde el terminal.
 
@@ -39,7 +20,7 @@ Asigne el primer descriptor de archivo no utilizado a la entrada de la tabla de 
 
 **2:** este descriptor de archivo representa el stderr (=> salida de error estándar, el terminal). Este es el descriptor de archivo que se utiliza al escribir un error en la terminal; la información se escribe de la misma manera, pero un programa que registra errores en un archivo puede redirigir todo lo escrito en el descriptor de archivo stderr a un archivo. El sistema operativo lo gestiona de otra manera.
 
-## Open ()
+### Open ()
 
 **#include <fcntl.h>**
 
@@ -71,7 +52,7 @@ Tienes que decirle a tu función qué tipo de acceso deseas. Esto se hace con ba
 
 El valor de retorno de open() es un descriptor de archivo, un pequeño entero no negativo que es un índice de una entrada en la tabla de descriptores de archivos abiertos del proceso. Si hay un error en alguna parte, la función devolverá -1 como sinónimo de error.
 
-## read ()
+### read ()
 
 La función tiene un prototipo de esta manera:
 
