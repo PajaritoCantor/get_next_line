@@ -20,7 +20,7 @@
 
    4.3. [Free](#free)
 
-   4.3. [Realloc(#Realloc)
+   4.3. [Realloc](#Realloc)
 
 ## Introducción a los descriptores de archivo (fd)
 
