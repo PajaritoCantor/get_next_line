@@ -24,7 +24,10 @@
 
 5. [Diseño de memoria de programas C](#Diseño-de-memoria-de-programas-C)
 
-   5.1. [Segmento de texto](#Segmento-de-texto)
+   5.1. [Segmento de datos inicializados](#Segmento-de-datos-inicializados)
+   5.2. [Segmento de datos no inicializados](#Segmento-de-datos-no-inicializados)
+   5.3 [Stack](#Stack)
+   5-4 [Heap](#Heap)
 
 ## Introducción a los descriptores de archivo (fd)
 
@@ -160,15 +163,18 @@ Un segmento de texto, también conocido como segmento de código o simplemente c
 
 Por lo general, el segmento de texto se puede compartir, por lo que solo es necesario que haya una copia en la memoria para los programas que se ejecutan con frecuencia, como los editores de texto, el compilador de C, los shells, etc. Además, el segmento de texto suele ser de sólo lectura, para evitar que un programa modifique accidentalmente sus instrucciones.
 
-**2. Segmento de datos inicializados:**  Segmento de datos inicializados, generalmente llamado simplemente *segmento de datos*. 
+### Segmento de datos inicializados:  
+Segmento de datos inicializados, generalmente llamado simplemente *segmento de datos*. 
 * Un segmento de datos es una parte del espacio de direcciones virtuales de un programa, que contiene *las variables globales* y *las variables estáticas* que inicializa el programador.
  * Ten en cuenta que el segmento de datos no es de solo lectura, ya que los valores de las variables se pueden modificar en tiempo de ejecución.
   * Este segmento se puede clasificar además en el área de solo lectura inicializada y el área de lectura-escritura inicializada.
 
-**3. Segmento de datos no inicializados:**  Segmento de datos no inicializados a menudo llamado segmento " bss ", que lleva el nombre de un antiguo operador ensamblador que significaba " bloque iniciado por símbolo ". 
+### Segmento de datos no inicializados: 
+Segmento de datos no inicializados a menudo llamado segmento " bss ", que lleva el nombre de un antiguo operador ensamblador que significaba " bloque iniciado por símbolo ". 
 * El núcleo inicializa los datos de este segmento en aritmética 0 antes de que el programa comience a ejecutar los datos no inicializados que comienzan al final del segmento de datos y contienen todas las variables globales y variables estáticas que se inicializan a cero o no tienen una inicialización explícita en el código fuente.
 
-**4. Pila (stack):**  El área del *stack* tradicionalmente estaba contigua al área del montón y crecía en la dirección opuesta; cuando el puntero del *stack* se encuentra con el puntero del montón, se agota la memoria libre. 
+### Pila (stack):  
+El área del *stack* tradicionalmente estaba contigua al área del montón y crecía en la dirección opuesta; cuando el puntero del *stack* se encuentra con el puntero del montón, se agota la memoria libre. 
  * Con los grandes espacios de direcciones modernos y las técnicas de memoria virtual, se pueden colocar casi en cualquier lugar, pero normalmente siguen creciendo en direcciones opuestas.
 
 * El área de stack contiene la pila de programas, una estructura LIFO, normalmente ubicada en las partes superiores de la memoria. 
@@ -181,7 +187,8 @@ En resumen, es donde se almacenan las variables automáticas, junto con la infor
  * La función recién llamada asigna espacio en la pila para sus variables automáticas.
   * Así es como pueden funcionar las funciones recursivas en C. Cada vez que una función recursiva se llama a sí misma, se utiliza un nuevo marco de pila, por lo que un conjunto de variables no interfiere con las variables de otra instancia de la función.
 
-**5. Montón (heap):**  El heap es el segmento donde suele tener lugar la asignación de memoria dinámica.
+### Montón (heap):  
+El heap es el segmento donde suele tener lugar la asignación de memoria dinámica.
 * El área del heap comienza al final del segmento BSS y crece hasta direcciones más grandes desde allí.
  * El área del *heap* es administrada por *malloc*, *realloc* y *free*, que pueden usar las llamadas al sistema brk y sbrk para ajustar su tamaño (tenga en cuenta que el uso de brk/sbrk y un único “área del montón” no es necesario para cumplir el contrato de *malloc*/*realloc*/*free*; también se pueden implementar usando *map* para reservar regiones potencialmente no contiguas de memoria virtual en el espacio de direcciones virtuales del proceso).
  * El área del *heap* es compartida por todas las bibliotecas compartidas y los módulos cargados dinámicamente en un proceso.
