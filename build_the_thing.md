@@ -33,7 +33,7 @@ Esta función se utiliza para copiar bloques de memoria de un lugar a otro. En e
 * Devuelve *la cadena de destino*
 
 
-#### **2. 1. 2. ft_bzero**
+#### ft_bzero
 
 void	ft_bzero(void *s, size_t n)
 {
@@ -41,12 +41,91 @@ void	ft_bzero(void *s, size_t n)
 		*(char *)s++ = 0;
 }
 
-* Asigna un puntero al inicio de memoria.
+* Vr a un puntero de tipo void
+
+
 * Establece los primeros n bytes de memoria a '\0'.
 
 Esta función se utiliza para inicializar bloques de memoria. Se utiliza en la función donde leemos y extraemos una línea de texto, para inicializar el buffer antes de leer del archivo y para limpiar cuando se ha llegado al final del archivo
 
-#### **2. 1. 3. ft_strlcpy_gnl**
+###
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+. ft_strlcpy_gnl**
 
 void	ft_strlcpy_gnl(char *dst, const char *src, size_t dstsize)
 {
