@@ -1,11 +1,12 @@
-1. GET_NEXT_LINE
+## 1. **GET_NEXT_LINE**
+
 La función get_next_line lee una línea desde un descriptor de archivo dado. La línea se define como una secuencia de caracteres terminada por '\n' o EOF (fin de archivo). La función se utiliza en un bucle para leer un archivo línea por línea.
 
-2. Orden de construcción de las funciones auxiliares
+## **2. Orden de construcción de las funciones auxiliares**
 
-2. 1. Funciones auxiliares
+### **2. 1. Funciones auxiliares**
 
-2. 1. 1. ft_memcpy
+#### **2. 1. 1. ft_memcpy**
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
@@ -20,14 +21,16 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 		*d++ = *s++;
 	return (dst);
 }
-* Asigna un puntero al inicio de la cadena de destino
-* Asigna un puntero al inicio de la cadena de origen
-* copia n bytes de la cadena de origen a la cadena de destino
-* Devuelve la cadena de destino
 
-Esta función se utiliza para copiar bloques de memoria de un lugar a otro. En el contexto de get_next_line, se utiliza en la función init_line para copiar la cadena stash a la nueva cadena line
+Esta función se utiliza para copiar bloques de memoria de un lugar a otro. En el contexto de get_next_line, se utiliza en la función que inicia la línea, para copiar una cadena a una nueva cadena de texto.
 
- 2. 1. 2. ft_bzero
+* Asigna un puntero al inicio de la cadena de destino.
+* Asigna un puntero al inicio de la cadena de origen.
+* copia *n* bytes de la cadena de origen a la cadena de destino.
+* Devuelve la cadena de destino.
+
+
+#### **2. 1. 2. ft_bzero**
 
 void	ft_bzero(void *s, size_t n)
 {
@@ -35,12 +38,12 @@ void	ft_bzero(void *s, size_t n)
 		*(char *)s++ = 0;
 }
 
-* Asigna un puntero al inicio de memoria
-* Establece los primeros n bytes de memoria a '\0'
+* Asigna un puntero al inicio de memoria.
+* Establece los primeros n bytes de memoria a '\0'.
 
-Esta función se utiliza para inicializar bloques de memoria. En get_next_line, se utiliza en la función extract_line para inicializar el buffer antes de leer del archivo y para limpiar el stash cuando se ha llegado al final del archivo
+Esta función se utiliza para inicializar bloques de memoria. Se utiliza en la función donde leemos y extraemos una línea de texto, para inicializar el buffer antes de leer del archivo y para limpiar cuando se ha llegado al final del archivo
 
-2. 1. 3. ft_strlcpy_gnl
+#### **2. 1. 3. ft_strlcpy_gnl**
 
 void	ft_strlcpy_gnl(char *dst, const char *src, size_t dstsize)
 {
@@ -58,13 +61,14 @@ void	ft_strlcpy_gnl(char *dst, const char *src, size_t dstsize)
 	}
 }
 
+Esta función se utiliza para copiar una cadena a otra. Se utiliza en la función que inicializa una línea de texto para copiar el buffer a la línea de texto y en la función principal get_next_line, para copiar el resto del buffer despuès del carácter de fin de línea al buffer.
+
 * Comprueba si el tamaño de la cadena de deestino es mayor que 0
 * Copia hasta dstsize -1 caracteres de la cadena de origen a la cadena de destino
 * Termina la cadena de destino con '\0'
 
-Esta función se utiliza para copiar una cadena a otra. En get_next_line, se utiliza en init_line para copiar el stash a la line y en get_next_line para copiar el resto del stash despuès del carácter de fin de línea al stash
 
-2. 1. 4. 
+#### **2. 1. 4.**
 
 char	*ft_strjoin_gnl(char *s1, char *s2, int *eol_loc)
 {
@@ -90,60 +94,92 @@ char	*ft_strjoin_gnl(char *s1, char *s2, int *eol_loc)
 	return (result);
 }
 
-* Calcula la longitud de las dos cadenas de entrada
-* Asigna memoria para la nueva cadena, que es la suma de las longitudes de las dos cadenas de entrada más 1 para el carácter nulo de terminación
-* Copia la primera cadena a la nueva cadena
-* Copia la segunda cadena a la nueva cadena, comenzando donde terminó la primera cadena
-* Devuelve la nueva cadena
+Esta función se utiliza para concatenar dos cadenas. En get_next_line, se utiliza en la función que extrae y lee una línea de texto, para concatenar el buffer leído del archivo a la línea.
 
-Esta función se utiliza para concatenar dos cadenas. En get_next_line, se utiliza en extract_line para concatenar el buffer leído del archivo a la line.
+* Calcula la longitud de las dos cadenas de entrada.
+* Asigna memoria para la nueva cadena, que es la suma de las longitudes de las dos cadenas de entrada más 1 para el carácter nulo de terminación.
+* Copia la primera cadena a la nueva cadena.
+* Copia la segunda cadena a la nueva cadena, comenzando donde terminó la primera cadena.
+* Devuelve la nueva cadena.
 
-3. Funciones principales
 
-* Conceptos:
+## 3. **Funciones principales**
 
-- stash: Es una cadena estática que se utiliza para almacenar los caracteres que se han leído per que aún no se han devuelto. En cada llamada a get_next_line, se lee una línea de stash antes de leer el archivo.
-- eol_loc: Es un puntero a un entero que se utiliza para almacenar la ubicación del carácter de fin de línea ('\n') en line. Si no hay un carácter de fin de línea en line, eol_loc se establece en -1.
-- line: Es la cadena que se va a devolver. Se inicializa a partir de stash y luego se leen y concatenan más caracteres de la entrada hasta que se encuentra un carácter de fin de línea o se llega del archivo 
-- Buffer: Es la región de memoria que se utiliza para almacenar temporalmente los datos leídos del archivo antes de procesarlos. Cuando se llama a get_next_line, se lee un bloque de daatos del archivo al buffer, luego la función busca un carácter de fin de línea en el buffer, y si encuentra uno se extrae la línea del buffer y se prepara el buffer para la próxima lectura moviendo los caracteres después del carácter de fin de línea al inicio del buffer. 
-	* El uso del buffer en get_next_line permite leer y procesar los datos en bloques en lugar de un carácter a la vez, lo que puede ser más eficiente, especialmente para archivos grandes. Además, el buffer permite a get_next_line manejar líneas que son más largas que el tamaño del buffer, ya que puede leer múltiples bloques de datos del archivo para una sola línea.
+### **Algunos conceptos:**
 
-3. 1. 
+* buffer_tmp: Es una cadena estática que almacena caracteres leídos, los cuales aún no se han devuelto. Se llena en cada llamada a la función get_next_line.
+* eol_position: Es un puntero a entero que indica la ubicación del carácter de fin de línea ('\n') en buffer. Si no hay '\n', se establece en -1.
+* line_text: Es una cadena que se devolverá. Se inicializa a partir de buffer_tmp y se le concatenan más caracteres hasta que se encuentra un '\n' o se llega al final del archivo.
+* buffer: Es una región de memoria que almacena temporalmente los datos leídos. En get_next_line, se lee un bloque de datos en buffer, se busca un '\n', se extrae la línea y se prepara buffer para la próxima lectura. Esto permite la lectura en bloques y el manejo de líneas que son más largas que el tamaño de buffer.
+* size_t: Es un tipo de ***dato entero sin signo*** que se utiliza para representar tamaños de objetos. Es el tipo de resultado devuelto por el operador sizeof.
+* ssize_t: Es un tipo de dato entero con signo que se utiliza en ciertas funciones que pueden devolver un valor negativo, como read o write, donde un valor negativo indica un error.
+* &: En el lenguaje de programación C, el operador & se utiliza para obtener la dirección de memoria de una variable o de un elemento específico en una matriz. Proporciona un puntero a la ubicación de memoria de la variable o elemento, permitiendo operaciones directas sobre esa ubicación de memoria.
 
-char	*init_line(char *stash, int *eol_loc)
+### **Acerca del Header**
+
+***#ifndef GET_NEXT_LINE_BONUS_H*** y ***#define GET_NEXT_LINE_BONUS_H***: Este es un mecanismo de protección contra la inclusión múltiple. Si el archivo de encabezado ya ha sido incluido previamente, la macro ***GET_NEXT_LINE_BONUS_H*** estará definida y el preprocesador ignorará el contenido del archivo hasta encontrar el #endif correspondiente. Esto previene problemas de redefinición y otros conflictos que pueden surgir por la inclusión múltiple de un archivo de encabezado.
+
+***#ifndef BUFFER_SIZE*** y ***#define BUFFER_SIZE*** 512: Este bloque verifica si la macro BUFFER_SIZE ya está definida. Si no lo está, se define con el valor 512. BUFFER_SIZE puede ser utilizada en el código para especificar el tamaño de un buffer.
+
+***#if BUFFER_SIZE > 125000 || BUFFER_SIZE < 1 y #undef BUFFER_SIZE y #define BUFFER_SIZE*** 512: Este bloque verifica si el valor de BUFFER_SIZE es mayor que 125000 o menor que 1. Si alguna de estas condiciones se cumple, BUFFER_SIZE se redefine con el valor 512. Esto asegura que BUFFER_SIZE siempre tenga un valor válido.
+
+***#ifndef MAX_OPEN_FILES*** y ***#define MAX_OPEN_FILES*** 512: Este bloque verifica si la macro MAX_OPEN_FILES ya está definida. Si no lo está, se define con el valor 512. MAX_OPEN_FILES puede ser utilizada en el código para limitar el número de archivos que el programa puede tener abiertos simultáneamente.
+
+### **Acerca del pre-procesador**
+
+* El preprocesador en C es una fase inicial en el proceso de compilación que maneja ciertas características del código fuente antes de que este sea pasado al compilador. Las directivas del preprocesador son líneas en el código fuente que comienzan con un signo de **#**.
+
+* Las tareas principales del preprocesador incluyen:
+
+* Inclusión de archivos: A través de la directiva #include, el preprocesador inserta el contenido de un archivo especificado en el lugar donde se encuentra la directiva.
+
+*  Definición de macros: Mediante la directiva #define, el preprocesador puede reemplazar una macro por un valor o una expresión especificada.
+
+* Condiciones de compilación: Con las directivas #if, #ifdef, #ifndef, #else, #elif y #endif, el preprocesador puede incluir o excluir partes del código fuente en la compilación, dependiendo de si ciertas condiciones se cumplen.
+
+* Eliminación de comentarios: El preprocesador elimina todos los comentarios del código fuente.
+
+
+### **3. 1.** 
+
+char	*init_stash_line(char *temp_buffer, int *eol_loc)
 {
 	size_t	len;
-	char	*line;
+	char	*line_text;
 
 	len = 0;
-	while (stash[len] && stash[len] != '\n')
+	while (temp_buffer[len] && temp_buffer[len] != '\n')
 		len++;
 	len++;
 	line = malloc(sizeof(char) * (len + 1));
-	if (!line)
+	if (!line_text)
 		return (NULL);
-	ft_memcpy(line, stash, len);
-	line[len] = '\0';
-	if (len > 0 && line[len - 1] == '\n')
+	ft_memcpy(line_text, temp_buffer, len);
+	line_text[len] = '\0';
+	if (len > 0 && line_text[len - 1] == '\n')
 		*eol_loc = len - 1;
-	return (line);
+	return (line_text);
 }
 
-Esta función se utiliza para inicializar la line a partir del stash. Busca el primer carácter de fin de línea en el stash y copia hasta ese punto en la line.
+Esta función se utiliza para inicializar una cadena de texto a partir de un buffer temporal.
+La función busca el primer carácter de fin de línea en el buffer temporal y **copia** hasta ese punto en la línea.
 
-* size_t len; char *line: Aquí se declaran las variables que se utilizarán en la función.
-	* len se utilizará para almacenar la longitud de la línea que se está inicializando.
-	* line será la línea que se devolverá.
-* while (stash[len] && stash[len] != '\n') len++;: Este bucle se utiliza paa calcular la longitud de la linea hasta el primer carácter de nueva línea ('\n') o hasta el final de la cadena stash.
-* len++; line = malloc(sizeof(char) * (len + 1));: Aquí se incrementa len en uno para tener en cuenta el carácter de nueva línea, y luego se asigna memoria para line con el tamaño de len más uno para el caracter nulo de terminación ('\0').
-* ft_memcpy(line, stash, len);: Esta línea copia len caracteres de stash a line.
-* line[len] = '\0';: Aquí se termina line con un carácter nulo
-* if (len > 0 && line[len - 1] == '\n') *eol_loc = len - 1;: Si el último carácter de line es una carácter de nueva línea, se establece *eol_loc a len - 1, que es la ubicación del carácter de fin de línea en line
-* return (line);: Finalmente, se devuelve line
+* Se declaran las variables que se utilizarán en la función.
+	* Una variable de tipo **size_t** se utilizará para almacenar la longitud de la línea que se está inicializando.
+	* una variable tipo **char puntero** será la línea de texto que se devolverá.
 
-3. 2. 
+* Inicializamos nuestra variable tipo **size_t** a 0.
+* Hacemos un bucle para calcular la *longitud* de nuestro buffer temporal hasta el primer carácter de nueva línea ('\n') o hasta el final de la cadena
+* Incrementamos nuestra variable *size_t* en 1 para tener el *carácter de nueva línea* en consideración
+* Asignamos *memoria* para nuestra *línea de texto* con el tamaño de longitud + 1 para tener en cuenta el caracter nulo de terminación.
+* Copiamos la *longitud* de nuestro *buffer_temporal* a nuestra *linea de texto*.
+* Terminamos nuestra *linea de texto* con un *carácter nulo*
+* Si la cadena **line_text** no está vacía, y su último carácter es un salto de línea, se establece ***eol_point** a **len - 1**, que es la ubicación del carácter de fin de línea en **line_text**
+* Finalmente, se retorna **line_text**.
 
-size_t	locate_eol(char *line)
+### **3. 2.**
+
+size_t	find_eol_position(char *line)
 {
 	size_t	i;
 
@@ -161,16 +197,16 @@ size_t	locate_eol(char *line)
 
 Esta función se utiliza para encontrar la ubicación del carácter de fin de línea ('\n') en el buffer de lectura. Esta ubicación se utiliza para determinar cuántos caracteres del buffer se deben concatenar a la línea actual y cuántos caracteres se deben mover al inicio del buffer para la próxima lectura.
 
-* size_t i = 0;: Aquí se declara e inicializa la variable i, que se utilizará para iterar sobre la cadena.
-* if (!line) return (-1);: Esta línea comprueba si line es NULL. Si es así, devuelve -1. Esto es una precaución para evitar errores si se lama a locale_eol con un argumento NULL.
-* while (i < BUFFER_SIZE): Este bucle se utiliza para iterar sobre la cadena. Se detiene cuando i alcanza BUFFER_SIZE, lo que significa que ha llegado al final del buffer.
-* if (line[i] == '\n' || line[i] == '\0') return (i + 1);: Dentro del bucle, esta línnea comprueba si el carácter actual es un carácter de fin de línea ('\n') o un carácter nulo ('\0'). Si es así, devuelve i + 1, que es la ubicación del carácter de fin de línea en la cadena o el final de la cadena si no se encontró un carácter de fin de línea-
-* i++;: Esta línea incrementa i en cada iteración del bucle
-* return (i);: Si el bucle termina sin encontrar un carácter de fin de línea o un carácter nulo, se devuelve i, que es igual a BUFFER_SIZE. Esto indica qque se ha llegado al final del buffer sin encontrar unn carácter de fin de línea.
+* Se declara e inicializa la variable i, que se utilizará para iterar sobre la cadena.
+* Comprobamos si line es NULL. Si es así, devuelve -1. Esto es una precaución para evitar errores si se llama a locale_eol con un argumento NULL.
+* Hacemos un bucle que se utiliza para iterar sobre la cadena. Este se detiene cuando *i* alcanza BUFFER_SIZE, lo que significa que ha llegado al final del buffer.
+* Dentro del bucle, esta comprobamos si el carácter actual es un carácter de fin de línea ('\n') o un carácter nulo ('\0'). Si es así, devuelve i + 1, que es la ubicación del carácter de fin de línea en la cadena o el final de la cadena si no se encontró un carácter de fin de línea-
+* Luego se incrementa i en cada iteración del bucle
+* Si el bucle termina sin encontrar un carácter de fin de línea o un carácter nulo, se devuelve i, que es igual a BUFFER_SIZE. Esto indica qque se ha llegado al final del buffer sin encontrar unn carácter de fin de línea.
 
-3. 3. 
+### **3. 3.**
 
-char	*extract_line(char *line, char *stash, int *eol_loc, int fd)
+char	*read_and_extract_line (char *line, char *buffer_tmp, int *eol_position, int fd)
 {
 	char	buffer[BUFFER_SIZE + 1];
 	ssize_t	read_check;
@@ -186,7 +222,7 @@ char	*extract_line(char *line, char *stash, int *eol_loc, int fd)
 			ft_bzero(stash, (BUFFER_SIZE + 1));
 			return (NULL);
 		}
-		line_size = locate_eol(buffer);
+		line_size = find_eol_position(buffer);
 		ft_strlcpy_gnl(stash, &buffer[line_size], (BUFFER_SIZE + 1));
 		buffer[line_size] = '\0';
 		line = ft_strjoin_gnl(line, buffer, eol_loc);
@@ -199,23 +235,23 @@ char	*extract_line(char *line, char *stash, int *eol_loc, int fd)
 	return (line);
 }
 
-Esta función se utiliza para leer del archivo y extraer líneas del buffer de lectura. Trabaja en conjunto con las funciones locate_eol, ft_bzero, ft_strlcpy_gnl y ft_strjoin_gnl para implementar la funcionalidad de lectura línea por línea de get_next_line.
+Esta función se utiliza para leer de un archivo y extraer líneas del buffer de lectura. Trabaja en conjunto con varias funciones auxiliares para implementar la funcionalidad de lectura línea por línea.
 
-* char buffer[BUFFER_SIZE + 1]; ssize_t read_check; size_t line_size; 
-	* buffer[BUFFER_SIZE + 1] es el buffer de lectura.
-	* read_check se utilizará para almacenar el resultado de la llamada a read.
-	* line_size se utilizará para almacenar la longitud de la línea que se está extrayendo del buffer.
-* while (*eol_loc == -1): Este bucle se ejecuta mientras no se haya encontrado un carácter de fin de línea en la línea actual.
-* ft_bzero(buffer, (BUFFER_SIZE + 1));: Aquí se lee del archivo al buffer. read_check se establece en el número de bytes leídos o -1 si se produce un error.
-* if (read_check == -1): Este bloque de código se ejecuta si se produce un error al leer del archivo. Libera la memoria asignada a line, limpia stash y devuelve NULL.
-* line_size = locate_eol(buffer);: Aquí se llama a locate_eol para encontrar la ubicación del carácter de fin de línea en el buffer.
-* ft_strlcpy_gnl(stash, &buffer[line_size], (BUFFER_SIZE + 1));: Esta línea copia el resto del buffer después del carácter de fin de línea al stash.
-* buffer[line_size] = '\0';: Aquí se termina el buffer con un carácter nulo en la ubicación del carácter de fin de línea.
-* line = ft_strjoin_gnl(line, buffer, eol_loc);: Esta línea concatena el buffer aa la línea actual.
-* if (read_check == 0): Este bloque de código se ejecuta si se ha llegado al final del archivo. Limpia stash y sale del buche.
-* return (line);: Finalmente, se devuelve line.
+* Se inicializa un buffer de lectura de tamaño fijo.
+* Se inicializa una variable para almacenar el número de bytes leídos de la llamada a la función de lectura.
+* Se inicializa una variable para almacenar la longitud de la línea que se está extrayendo del buffer.
+* Se ejecuta un bucle mientras no se haya encontrado un carácter de fin de línea en la línea actual.
+* Se llama a una función para establecer a cero todos los bytes en el buffer.
+* Se llama a la función de lectura para leer hasta un número fijo de bytes de datos del archivo en el buffer. El resultado de la operación de lectura se almacena en la variable correspondiente.
+* Si se produce un error al leer del archivo, se libera la memoria asignada a la línea, se limpia el buffer y se devuelve NULL.
+* Se llama a una función para encontrar la ubicación del carácter de fin de línea en el buffer.
+* Se utiliza una función para transferir cualquier dato no procesado en el buffer, que se encuentra después de una posición específica, a un buffer temporal para su procesamiento en la próxima llamada a la función.
+* Se termina el buffer con un carácter nulo en la ubicación del carácter de fin de línea.
+* Se concatena la cadena del buffer hasta una posición específica a la cadena de línea existente. El resultado se almacena de nuevo en la cadena de línea.
+* Si se ha llegado al final del archivo, se limpia el buffer y se sale del bucle.
+* Finalmente, se devuelve la cadena de línea.
 
-3. 4. 
+### **3. 4.** 
 
 char	*get_next_line(int fd)
 {
@@ -239,17 +275,15 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-get_next_line utiliza las funciones init_line, ft_strlcpy_gnl y extract_line para implementar la funcionalidad de lectura línea por línea. Init_line se utiliza para inicializar line con los caracteres de stash, ft_strlcpy_gnl se utiliza para mover los caracteres en stash, y extract_line se utiliza para leer más caracteres del archivo y añadirlos a line.
+Esta función se utiliza para leer una línea a la vez de un archivo. Aquí está la descripción genérica y concisa para tu manual de procesos:
 
-* static char stash[BUFFER_SIZE + 1]; char *line; int eol_loc;:
-	* stash[BUFFER_SIZE + 1];: Es un buffer estático que se utiliza paara almacenar los caracteres que se han leído pero que aún no se han devuelto.
-	* line;: Es un puntero a la línea que se está construyendo
-	* eol_loc;: Es la ubicación del carácter de fin de línea en stash.
-* if (fd < 0 || BUFFER_SIZE <= 0) return NULL;: Esta línea comprueba si el descriptor de archivo es válido y si el tamaño del buffer es mayor que cero. si alguna de estas condiciones no se cumple, devuelve NULL.
-* eol_loc = -1; Se inicializa a -1, lo que indica que aún no se ha encontrado un carácter de fin de línea.
-* line = init_line(stash, &eol_loc);: Aquí se llama a init_line para inicializar line con los caracteres de stash hasta el primer carácter de línea
-* if (!line) return (NULL);: Esta línea comprueba si init_line devolvió NULL, lo que indicaría un error. Si es así, devuelve NULL.
-* ft_strlcpy_gnl(stash, &stash[eol_loc + 1], BUFFER_SIZE + 1);: Esta línea mueve los caracteres en stash después del carácter de fin de línea al inicio de stash.
-* line = extract_line(line, stash, &eol_loc, fd);: Aquí se llama a extract_line para leer más caracteres del archivo y añadirlos a line hassta que se encuentre un carácter de fin de línea.
-* if (!line || line [0] == '\0'): Este bloque de código se ejecuta si extract_line devolvió NULL o una línea vacía. En ambos casos, libera la memoria asignada a line y devuelve NULL.
-return (line);: Finalmente, se devuelve line.
+* Se inicializa un buffer estático para almacenar cualquier dato no procesado de lecturas anteriores.
+* Se inicializa una variable para almacenar la línea que se está leyendo.
+* Se inicializa una variable para almacenar la ubicación del carácter de fin de línea.
+* Se comprueba si el descriptor de archivo es válido y si el tamaño del buffer es mayor que cero. Si alguna de estas condiciones no se cumple, se devuelve NULL.
+* Se asigna un valor inicial a la variable que almacena la ubicación del carácter de fin de línea.
+* Se llama a una función para inicializar la línea con cualquier dato no procesado en el buffer estático. Si la inicialización falla, se devuelve NULL.
+* Se copia cualquier dato no procesado en el buffer estático, que se encuentra después de la ubicación del carácter de fin de línea, de vuelta al buffer estático para su procesamiento en la próxima llamada a la función.
+* Se llama a una función para leer del archivo y extraer una línea.
+* Si la línea es NULL o está vacía, se libera la memoria asignada a la línea y se devuelve NULL.
+* Finalmente, se devuelve la línea leída.

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jurodrig <jurodrig@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/25 15:36:12 by jurodrig          #+#    #+#             */
-/*   Updated: 2024/04/05 22:00:14 by jurodrig         ###   ########.fr       */
+/*   Created: 2024/04/01 15:45:35 by jurodrig          #+#    #+#             */
+/*   Updated: 2024/04/05 01:14:17 by jurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*init_stash_line(char *buffer_tmp, int *eol_loc)
 {
@@ -38,9 +38,9 @@ size_t	find_eol_position(char *line_text)
 	i = 0;
 	if (!line_text)
 		return (-1);
-	while (i < BUFFER_SIZE || line_text[i] != '\0')
+	while (i < BUFFER_SIZE)
 	{
-		if (line_text[i] == '\n')
+		if (line_text[i] == '\n' || line_text[i] == '\0')
 			return (i + 1);
 		i++;
 	}
@@ -79,18 +79,19 @@ int fd)
 
 char	*get_next_line(int fd)
 {
-	static char	buffer_tmp[BUFFER_SIZE + 1];
+	static char	buffer_tmp[OPEN_MAX][BUFFER_SIZE + 1];
 	char		*line_text;
 	int			eol_loc;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
 	eol_loc = -1;
-	line_text = init_stash_line(buffer_tmp, &eol_loc);
+	line_text = init_stash_line(buffer_tmp[fd], &eol_loc);
 	if (!line_text)
 		return (NULL);
-	ft_strlcpy_gnl(buffer_tmp, &buffer_tmp[eol_loc + 1], BUFFER_SIZE + 1);
-	line_text = read_and_extract_line(line_text, buffer_tmp, &eol_loc, fd);
+	ft_strlcpy_gnl(buffer_tmp[fd], &buffer_tmp[fd][eol_loc + 1],
+		BUFFER_SIZE + 1);
+	line_text = read_and_extract_line(line_text, buffer_tmp[fd], &eol_loc, fd);
 	if (!line_text || line_text[0] == '\0')
 	{
 		free(line_text);
@@ -99,31 +100,38 @@ char	*get_next_line(int fd)
 	return (line_text);
 }
 
-void leaks(void)
-{
-	system ("leaks a.out");
-}
+/*
 #include <fcntl.h>
-#include <stdio.h>
+
 int main(void)
 {
-    //int fd;
-    char    *next_line;
-	atexit(leaks);
-/*   fd = open("test.txt", O_RDONLY);
-    if (fd == -1)
-    {
-        printf("Error");
-        return (1);
-    }*/
+    int fd1, fd2;
+    char *line;
 
-    while ((next_line = get_next_line(STDIN_FILENO)) != NULL)
+    fd1 = open("test.txt", O_RDONLY);
+    fd2 = open("ejemplo.txt", O_RDONLY);
+    if (fd1 == -1 || fd2 == -1)
     {
-        printf("%s\n", next_line);
-        free(next_line);
-        next_line = NULL;
+        printf("Error al abrir los archivos\n");
+        return (1);
     }
 
-    //close(fd);
+    printf("Leyendo test.txt:\n");
+    while ((line = get_next_line(fd1)) != NULL)
+    {
+        printf("%s\n", line);
+        free(line);
+    }
+
+    printf("Leyendo test2.txt:\n");
+    while ((line = get_next_line(fd2)) != NULL)
+    {
+        printf("%s\n", line);
+        free(line);
+    }
+
+    close(fd1);
+    close(fd2);
     return (0);
 }
+*/
