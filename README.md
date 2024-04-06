@@ -1,7 +1,7 @@
 # Índice
-1. [INTRODUCCIÓN A LOS DESCRIPTORES DE ARCHIVO](#introducción-a-los-descriptores-de-archivo-)
+1. [INTRODUCCIÓN A LOS DESCRIPTORES DE ARCHIVO](#introducción-a-los-descriptores-de-archivo-)#
   1.1 [Descriptores de archivos estándar](#Descriptores-de-archivos-estandar-)
-2. [Open](#Open)
+3. [Open](#Open)
 - Read()
 
 ## 1. Introducción a los descriptores de archivo
