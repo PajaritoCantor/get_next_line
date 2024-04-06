@@ -8,7 +8,7 @@
 
     2.2. [Componentes](#Componentes)
    
-   2. [Read](#Read)
+   2.3. [Read](#Read)
    
 4. [Variables estáticas en C](#variables-estaticas-en-C)
 
