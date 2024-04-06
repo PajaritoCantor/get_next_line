@@ -4,7 +4,7 @@
    
 2. [Funciones](#funciones)
 
-3. [Open](#Open)
+   2.1. [Open](#Open)
    
 2.2. [Read](#read)
    
