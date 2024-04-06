@@ -1,7 +1,7 @@
 # Índice
-* [INTRODUCCIÓN A LOS DESCRIPTORES DE ARCHIVO](#introducción-a-los-descriptores-de-archivo-)
-* Descriptores de archivos estándar
-3. Open()
+- [INTRODUCCIÓN A LOS DESCRIPTORES DE ARCHIVO](#introducción-a-los-descriptores-de-archivo-)
+  - [Descriptores de archivos estándar](#Descriptores-de-archivos-estandar-)
+- [Open](#Open)
 4. Read()
 
 ## Introducción a los descriptores de archivo
@@ -11,7 +11,7 @@
 4 ◦ En el contexto de la programación, los descriptores de archivo se utilizan en varias funciones de la biblioteca estándar de C, como open, read, write y close, que permiten al programador interactuar con los archivos.
 5 ◦ Es importante tener en cuenta que los descriptores de archivo son específicos del proceso. Esto significa que dos procesos diferentes pueden tener descriptores de archivo con el mismo número, pero cada uno de ellos se refiere a un archivo diferente.
 
-- # Descriptores de archivos estándar
+### Descriptores de archivos estándar
 0: este descriptor de archivo representa la entrada estándar (=> entrada estándar, el terminal). Este es el descriptor de archivo utilizado al leer la entrada del usuario desde el terminal.
 
 1: este descriptor de archivo representa la salida estándar (=> salida estándar, el terminal). Este es el descriptor de archivo utilizado al escribir en la terminal.
@@ -19,6 +19,7 @@
 2: este descriptor de archivo representa el stderr (=> salida de error estándar, el terminal). Este es el descriptor de archivo que se utiliza al escribir un error en la terminal; la información se escribe de la misma manera, pero un programa que registra errores en un archivo puede redirigir todo lo escrito en el descriptor de archivo stderr a un archivo. El sistema operativo lo gestiona de otra manera.
 
 # Open()
+
 #include <fcntl.h>
 
 Esta función le permitirá abrir y acceder a un archivo. Está prototipado de esta manera:
