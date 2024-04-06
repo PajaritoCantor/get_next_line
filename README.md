@@ -60,7 +60,7 @@ La función tiene un prototipo de esta manera:
 
 Esta función intenta leer nbytebytes de datos del objeto al que hace referencia el descriptor fildesen el búfer al que apunta buf. La función read() comienza en una posición dada por el puntero asociado con fildes. Al final, el puntero se incrementa según el número de bytes ( nbyte) realmente leídos.
 
-## Static Variables in C
+## Variables estáticas en C
 
 Las variables estáticas tienen la propiedad de preservar su valor incluso después de que estén fuera de su alcance. Por lo tanto, una variable estática conserva su valor anterior en su ámbito anterior y no se inicializa nuevamente en el nuevo ámbito. 
 
@@ -70,13 +70,13 @@ Sintaxis:
 
 **1)** Una variable int estática permanece en la memoria mientras se ejecuta el programa. Una variable normal o automática se destruye cuando finaliza una llamada a una función donde se declaró la variable.
 
-**2)** A las variables estáticas se les asigna memoria en el segmento de datos, no en el segmento de pila. Consulte el diseño de la memoria de los programas C para obtener más detalles.
+**2)** A las variables estáticas se les asigna memoria en el segmento de datos, no en el segmento de stack.
 
-**3)** Las variables estáticas (como las variables globales) se inicializan como 0 si no se inicializan explícitamente. Por ejemplo, en el siguiente programa, el valor de x se imprime como 0, mientras que el valor de y es algo basura. Vea esto para más detalles. 
+**3)** Las variables estáticas (como las variables globales) se inicializan como 0 si no se inicializan explícitamente.
 
-**4)** En C, las variables estáticas solo se pueden inicializar utilizando literales constantes. Por ejemplo, el siguiente programa falla en la compilación. Vea esto para más detalles.
+**4)** En C, las variables estáticas solo se pueden inicializar utilizando literales constantes.
 
-**5)** Las variables y funciones globales estáticas también son posibles en C/C++. El propósito de estos es limitar el alcance de una variable o función a un archivo. Consulte Funciones estáticas en C para obtener más detalles.
+**5)** Las variables y funciones globales estáticas también son posibles en C/C++. El propósito de estos es limitar el alcance de una variable o función a un archivo. 
 
 **6)** Las variables estáticas no deben declararse dentro de una estructura. La razón es que el compilador de C requiere que todos los elementos de la estructura se coloquen juntos (es decir, que la asignación de memoria para los miembros de la estructura debe ser contigua). Es posible declarar la estructura dentro de la función (segmento de pila) o asignar memoria dinámicamente (segmento de montón) o incluso puede ser global (BSS o segmento de datos). Cualquiera que sea el caso, todos los miembros de la estructura deben residir en el mismo segmento de memoria porque el valor del elemento de la estructura se obtiene contando el desplazamiento del elemento desde la dirección inicial de la estructura. Separar un solo miembro en un segmento de datos anula el propósito de la estructura y es posible tener una estructura completa como estática.
 
