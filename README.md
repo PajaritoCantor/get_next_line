@@ -1,6 +1,6 @@
 # INDICE
 
-1. [Introducción a los descriptores de archivo (fd)](#Introducción-a-los-descriptores-de-archivo-(fd))
+1. [Introducción a los descriptores de archivo (fd)](#Introducción-a-los-descriptores-de-archivo-(fd)-)
    
 2. [Funciones](#funciones)
 
