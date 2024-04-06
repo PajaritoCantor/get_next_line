@@ -22,7 +22,7 @@
 
    4.3. [Realloc](#Realloc)
 
-5. [Diseño de memoria de programas C](#Diseños-de-memoria-de-programas-C)
+5. [Diseño de memoria de programas C](#Diseño-de-memoria-de-programas-C)
 
    5.1. [Segmento de texto](#Segmento-de-texto)
 
@@ -148,7 +148,7 @@ Se utiliza para cambiar dinámicamente la asignación de memoria de una memoria 
 
 Una representación de memoria típica de un programa C consta de las siguientes secciones.
 
-## Segmento de texto:  
+### Segmento de texto:  
 
 Un segmento de texto, también conocido como segmento de código o simplemente como texto, es una de las secciones de un programa en un archivo objeto o en la memoria, que contiene instrucciones ejecutables.
 Como región de memoria, se puede colocar un segmento de texto debajo del *heap* o el *stack* para evitar que los montones y los desbordamientos de pila lo sobrescriban.
