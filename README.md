@@ -4,12 +4,6 @@
 3. Open()
 4. Read()
 
-## 1 - Introducción a los descriptores de archivo
-1 ◦ Los descriptores de archivo son una parte integral de cómo los sistemas operativos interactúan con los archivos. Son identificadores únicos, generalmente representados como números enteros, que se asignan a un archivo abierto o a un flujo de datos.
-2 ◦ Cada vez que un archivo se abre en un sistema operativo, se crea un descriptor de archivo. Este descriptor se utiliza luego para leer, escribir o realizar otras operaciones con el archivo. Cuando el archivo se cierra, el descriptor de archivo se libera y puede ser reutilizado.
-3 ◦ Los descriptores de archivo no sólo se utilizan para los archivos regulares, sino también para otros tipos de recursos, como los sockets de red y los tubos (pipes). En todos estos casos, el descriptor de archivo proporciona una forma de referirse al recurso abierto.
-4 ◦ En el contexto de la programación, los descriptores de archivo se utilizan en varias funciones de la biblioteca estándar de C, como open, read, write y close, que permiten al programador interactuar con los archivos.
-5 ◦ Es importante tener en cuenta que los descriptores de archivo son específicos del proceso. Esto significa que dos procesos diferentes pueden tener descriptores de archivo con el mismo número, pero cada uno de ellos se refiere a un archivo diferente.
 
 ## Descriptores de archivos estándar
 0: este descriptor de archivo representa la entrada estándar (=> entrada estándar, el terminal). Este es el descriptor de archivo utilizado al leer la entrada del usuario desde el terminal.
@@ -48,6 +42,14 @@ O_EXCL : Impide la creación de archivos si ya existe en el directorio o ubicaci
 Valor de retorno
 
 El valor de retorno de open() es un descriptor de archivo, un pequeño entero no negativo que es un índice de una entrada en la tabla de descriptores de archivos abiertos del proceso. Si hay un error en alguna parte, la función devolverá -1 como sinónimo de error.
+
+## 1 - Introducción a los descriptores de archivo
+1 ◦ Los descriptores de archivo son una parte integral de cómo los sistemas operativos interactúan con los archivos. Son identificadores únicos, generalmente representados como números enteros, que se asignan a un archivo abierto o a un flujo de datos.
+2 ◦ Cada vez que un archivo se abre en un sistema operativo, se crea un descriptor de archivo. Este descriptor se utiliza luego para leer, escribir o realizar otras operaciones con el archivo. Cuando el archivo se cierra, el descriptor de archivo se libera y puede ser reutilizado.
+3 ◦ Los descriptores de archivo no sólo se utilizan para los archivos regulares, sino también para otros tipos de recursos, como los sockets de red y los tubos (pipes). En todos estos casos, el descriptor de archivo proporciona una forma de referirse al recurso abierto.
+4 ◦ En el contexto de la programación, los descriptores de archivo se utilizan en varias funciones de la biblioteca estándar de C, como open, read, write y close, que permiten al programador interactuar con los archivos.
+5 ◦ Es importante tener en cuenta que los descriptores de archivo son específicos del proceso. Esto significa que dos procesos diferentes pueden tener descriptores de archivo con el mismo número, pero cada uno de ellos se refiere a un archivo diferente.
+
 
 ## Read()
 La función tiene un prototipo de esta manera:
