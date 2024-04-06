@@ -14,6 +14,8 @@
 
 4. [Asignación de memoria dinámica en C](#Asignación-de-memoria-dinámica-en-C)
 
+   4.1[malloc](#malloc)
+
 ## Introducción a los descriptores de archivo
 
 Los descriptores de archivo son una parte integral de cómo los sistemas operativos interactúan con los archivos. Son identificadores únicos, generalmente representados como números enteros, que se asignan a un archivo abierto o a un flujo de datos.
