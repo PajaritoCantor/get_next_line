@@ -2,9 +2,9 @@
 
 1. [Introducción a los descriptores de archivo](#Introducción-a-los-descriptores-de-archivo)
    
-3. [Funciones](#funciones)
+2. [Funciones](#funciones)
 
-    2.1. [Open](#open)
+    2.1. [Funciones](#funciones)
    
     2.2. [Read](#read)
    
