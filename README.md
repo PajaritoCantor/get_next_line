@@ -1,24 +1,26 @@
 # Índice
-- [INTRODUCCIÓN A LOS DESCRIPTORES DE ARCHIVO](#introducción-a-los-descriptores-de-archivo-)
-  - [Descriptores de archivos estándar](#Descriptores-de-archivos-estandar-)
-- [Open](#Open)
-4. Read()
+1. [INTRODUCCIÓN A LOS DESCRIPTORES DE ARCHIVO](#introducción-a-los-descriptores-de-archivo-)
+  1.1 [Descriptores de archivos estándar](#Descriptores-de-archivos-estandar-)
+2. [Open](#Open)
+- Read()
 
-## Introducción a los descriptores de archivo
-1 ◦ Los descriptores de archivo son una parte integral de cómo los sistemas operativos interactúan con los archivos. Son identificadores únicos, generalmente representados como números enteros, que se asignan a un archivo abierto o a un flujo de datos.
-2 ◦ Cada vez que un archivo se abre en un sistema operativo, se crea un descriptor de archivo. Este descriptor se utiliza luego para leer, escribir o realizar otras operaciones con el archivo. Cuando el archivo se cierra, el descriptor de archivo se libera y puede ser reutilizado.
-3 ◦ Los descriptores de archivo no sólo se utilizan para los archivos regulares, sino también para otros tipos de recursos, como los sockets de red y los tubos (pipes). En todos estos casos, el descriptor de archivo proporciona una forma de referirse al recurso abierto.
-4 ◦ En el contexto de la programación, los descriptores de archivo se utilizan en varias funciones de la biblioteca estándar de C, como open, read, write y close, que permiten al programador interactuar con los archivos.
-5 ◦ Es importante tener en cuenta que los descriptores de archivo son específicos del proceso. Esto significa que dos procesos diferentes pueden tener descriptores de archivo con el mismo número, pero cada uno de ellos se refiere a un archivo diferente.
+## 1. Introducción a los descriptores de archivo
 
-### Descriptores de archivos estándar
+Los descriptores de archivo son una parte integral de cómo los sistemas operativos interactúan con los archivos. Son identificadores únicos, generalmente representados como números enteros, que se asignan a un archivo abierto o a un flujo de datos.
+* Cada vez que un archivo se abre en un sistema operativo, se crea un descriptor de archivo. Este descriptor se utiliza luego para leer, escribir o realizar otras operaciones con el archivo. Cuando el archivo se cierra, el descriptor de archivo se libera y puede ser reutilizado.
+ * Los descriptores de archivo no sólo se utilizan para los archivos regulares, sino también para otros tipos de recursos, como los sockets de red y los tubos (pipes). En todos estos casos, el descriptor de archivo proporciona una forma de referirse al recurso abierto.
+  * En el contexto de la programación, los descriptores de archivo se utilizan en varias funciones de la biblioteca estándar de C, como open, read, write y close, que permiten al programador interactuar con los archivos.
+   * Es importante tener en cuenta que los descriptores de archivo son específicos del proceso. Esto significa que dos procesos diferentes pueden tener descriptores de archivo con el mismo número, pero cada uno de ellos se refiere a un archivo diferente.
+
+### 1.1. Descriptores de archivos estándar
+
 0: este descriptor de archivo representa la entrada estándar (=> entrada estándar, el terminal). Este es el descriptor de archivo utilizado al leer la entrada del usuario desde el terminal.
 
 1: este descriptor de archivo representa la salida estándar (=> salida estándar, el terminal). Este es el descriptor de archivo utilizado al escribir en la terminal.
 
 2: este descriptor de archivo representa el stderr (=> salida de error estándar, el terminal). Este es el descriptor de archivo que se utiliza al escribir un error en la terminal; la información se escribe de la misma manera, pero un programa que registra errores en un archivo puede redirigir todo lo escrito en el descriptor de archivo stderr a un archivo. El sistema operativo lo gestiona de otra manera.
 
-# Open()
+## 2. Open()
 
 #include <fcntl.h>
 
@@ -26,27 +28,27 @@ Esta función le permitirá abrir y acceder a un archivo. Está prototipado de e
 
 int open (const char path, int flags [, int mode ]);*
 
-path
+### Path
 
 Corresponde al título del archivo que desea abrir/crear.
 
 También se refiere a la ubicación del archivo. Si no está trabajando en el mismo directorio que el archivo, puede proporcionar una ruta absoluta que comience con "/"
 
-flags
+### Flags
 
 Tienes que decirle a tu función qué tipo de acceso deseas. Esto se hace con banderas. Aquí está la lista con la información de cada bandera:
 
-O_RDONLY : En modo de solo lectura, abra el archivo.
+**O_RDONLY** : En modo de solo lectura, abra el archivo.
 
-O_WRONLY : En modo de solo escritura, abra el archivo
+**O_WRONLY** : En modo de solo escritura, abra el archivo
 
-O_RDWR : Abre el archivo en modo lectura y escritura.
+**O_RDWR** : Abre el archivo en modo lectura y escritura.
 
-O_CREAT : Este indicador se aplica para crear un archivo si no existe en la ruta o directorio especificado.
+**O_CREAT** : Este indicador se aplica para crear un archivo si no existe en la ruta o directorio especificado.
 
-O_EXCL : Impide la creación de archivos si ya existe en el directorio o ubicación.
+**O_EXCL** : Impide la creación de archivos si ya existe en el directorio o ubicación.
 
-Valor de retorno
+#### Valor de retorno
 
 El valor de retorno de open() es un descriptor de archivo, un pequeño entero no negativo que es un índice de una entrada en la tabla de descriptores de archivos abiertos del proceso. Si hay un error en alguna parte, la función devolverá -1 como sinónimo de error.
 
