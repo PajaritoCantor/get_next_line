@@ -8,7 +8,7 @@
 
     2.2. [Componentes](#Componentes)
    
-2. [Read](#Read)
+   2. [Read](#Read)
    
 4. [Variables estáticas en C](#variables-estaticas-en-C)
 
@@ -61,7 +61,7 @@ Tienes que decirle a tu función qué tipo de acceso deseas. Esto se hace con ba
 
 El valor de retorno de open() es un descriptor de archivo, un pequeño entero no negativo que es un índice de una entrada en la tabla de descriptores de archivos abiertos del proceso. Si hay un error en alguna parte, la función devolverá -1 como sinónimo de error.
 
-## 2.2. Read()
+## Read()
 La función tiene un prototipo de esta manera:
 
         ssize_t read(int fildes, void buf, size_t nbyte);
