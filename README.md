@@ -4,9 +4,9 @@
    
 2. [Funciones](#funciones)
 
-2.1. [Open](#Open)
+3. [Open](#Open)
    
-    2.2. [Read](#read)
+2.2. [Read](#read)
    
 4. [Variables estáticas en C](#variables-estaticas-en-C)
 
@@ -23,7 +23,7 @@ Cada vez que un archivo se abre en un sistema operativo, se crea un descriptor d
 
 ## Funciones
 
-## 2.1. Open()
+## Open()
 
 #include <fcntl.h>
 
