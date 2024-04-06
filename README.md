@@ -188,14 +188,16 @@ El área del *stack* tradicionalmente estaba contigua al área del montón y cre
    * El conjunto de valores enviados para una llamada de función se denomina "marco de pila"; Un marco de pila consta como mínimo de una dirección de remitente.
 
 En resumen, es donde se almacenan las variables automáticas, junto con la información que se guarda cada vez que se llama a una función. 
-* Cada vez que se llama a una función, la dirección a dónde regresar y cierta información sobre el entorno de la persona que llama, como algunos de los registros de la máquina, se guardan en la pila.
+* Cada vez que se llama a una función, la dirección a dónde regresar y cierta información sobre el entorno de la persona que llama, así como, algunos de los registros de la máquina, se guardan en el *stack*.
  * La función recién llamada asigna espacio en la pila para sus variables automáticas.
-  * Así es como pueden funcionar las funciones recursivas en C. Cada vez que una función recursiva se llama a sí misma, se utiliza un nuevo marco de pila, por lo que un conjunto de variables no interfiere con las variables de otra instancia de la función.
+  * Así es como pueden funcionar las funciones recursivas en C. Cada vez que una función recursiva se llama a sí misma, se utiliza un nuevo marco de *stack*, por lo que un conjunto de variables no interfiere con las variables de otra instancia de la función.
 
 ### Montón (heap):  
 El heap es el segmento donde suele tener lugar la asignación de memoria dinámica.
 * El área del heap comienza al final del segmento BSS y crece hasta direcciones más grandes desde allí.
- * El área del *heap* es administrada por *malloc*, *realloc* y *free*, que pueden usar las llamadas al sistema brk y sbrk para ajustar su tamaño (tenga en cuenta que el uso de brk/sbrk y un único “área del montón” no es necesario para cumplir el contrato de *malloc*/*realloc*/*free*; también se pueden implementar usando *map* para reservar regiones potencialmente no contiguas de memoria virtual en el espacio de direcciones virtuales del proceso).
+ * El área del *heap* es administrada por *malloc*, *realloc* y *free*, que pueden usar las llamadas al sistema brk y sbrk para ajustar su tamaño.
+ * Tenga en cuenta que el uso de brk/sbrk y un único “área del heap” no es necesario para cumplir con *malloc*/*realloc*/*free*.
+ * también se pueden implementar usando *map* para reservar regiones potencialmente no contiguas de memoria virtual en el espacio de direcciones virtuales del proceso).
  * El área del *heap* es compartida por todas las bibliotecas compartidas y los módulos cargados dinámicamente en un proceso.
 
 Fuente: https://42-cursus.gitbook.io/guide/rank-01/get_next_line
