@@ -178,7 +178,7 @@ Segmento de datos inicializados, generalmente llamado simplemente *segmento de d
 Segmento de datos no inicializados a menudo llamado segmento " bss ", que lleva el nombre de un antiguo operador ensamblador que significaba " bloque iniciado por símbolo ". 
 * El núcleo inicializa los datos de este segmento en aritmética 0 antes de que el programa comience a ejecutar los datos no inicializados que comienzan al final del segmento de datos y contienen todas las variables globales y variables estáticas que se inicializan a cero o no tienen una inicialización explícita en el código fuente.
 
-### Pila (stack):  
+### Stack:  
 El área del *stack* tradicionalmente estaba contigua al área del montón y crecía en la dirección opuesta; cuando el puntero del *stack* se encuentra con el puntero del montón, se agota la memoria libre. 
  * Con los grandes espacios de direcciones modernos y las técnicas de memoria virtual, se pueden colocar casi en cualquier lugar, pero normalmente siguen creciendo en direcciones opuestas.
 
@@ -192,7 +192,7 @@ En resumen, es donde se almacenan las variables automáticas, junto con la infor
  * La función recién llamada asigna espacio en la pila para sus variables automáticas.
   * Así es como pueden funcionar las funciones recursivas en C. Cada vez que una función recursiva se llama a sí misma, se utiliza un nuevo marco de *stack*, por lo que un conjunto de variables no interfiere con las variables de otra instancia de la función.
 
-### Montón (heap):  
+### Heap:  
 El heap es el segmento donde suele tener lugar la asignación de memoria dinámica.
 * El área del heap comienza al final del segmento BSS y crece hasta direcciones más grandes desde allí.
  * El área del *heap* es administrada por *malloc*, *realloc* y *free*, que pueden usar las llamadas al sistema brk y sbrk para ajustar su tamaño.
