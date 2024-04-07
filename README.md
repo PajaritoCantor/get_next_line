@@ -29,9 +29,9 @@
    
    5.2. [Segmento de datos no inicializados](#Segmento-de-datos-no-inicializados)
    
-   5.3 [Stack](#Stack)
+   5.3. [Stack](#Stack)
    
-   5-4 [Heap](#Heap)
+   5.4. [Heap](#Heap)
 
 ## Introducción a los descriptores de archivo (fd)
 
