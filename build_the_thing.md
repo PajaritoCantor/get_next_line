@@ -7,6 +7,7 @@ La función get_next_line lee una línea desde un descriptor de archivo dado.
 # INDICE
 
 1. [Funciones auxiliares](#Funciones-auxiliares)
+   
    1.1 [ft_memcpy](#ft_memcpy)
    
 ## Funciones auxiliares
