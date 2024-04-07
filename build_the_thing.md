@@ -7,12 +7,11 @@ La función get_next_line lee una línea desde un descriptor de archivo dado.
 # INDICE
 
 1. [Funciones auxiliares](#Funciones-auxiliares)
+   1.1 [ft_memcpy](#ft_memcpy)
    
 ## Funciones auxiliares
 
-### Funciones auxiliares**
-
-#### ft_memcpy**
+### ft_memcpy
 
 Esta función se utiliza para copiar bloques de memoria de un lugar a otro. En el contexto de get_next_line, se utiliza en la función que inicia la línea, para copiar una cadena a una nueva cadena de texto.
 
