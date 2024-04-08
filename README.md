@@ -35,7 +35,7 @@
 
 6. [GET_NEXT_LINE](#get_next_line)
    
-   6.1. [Funciones auxiliares](#Funciones_auxiliares)
+   6.1. [Funciones auxiliares](#Funciones-auxiliares)
 
 ## Introducción a los descriptores de archivo (fd)
 
