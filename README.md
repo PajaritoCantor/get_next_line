@@ -24,7 +24,6 @@
 
 5. [Diseño de memoria de programas C](#Diseño-de-memoria-de-programas-C)
 
-
    5.1. [Segmento de datos inicializados](#Segmento-de-datos-inicializados)
    
    5.2. [Segmento de datos no inicializados](#Segmento-de-datos-no-inicializados)
@@ -35,7 +34,9 @@
 
 6. [GET_NEXT_LINE](#get_next_line)
    
-   6.1. [Funciones auxiliares](#Funciones-auxiliares)
+   6.1. [ACLARACIÓN](#ACLARACIÓN)
+   
+   6.2. [Funciones auxiliares](#Funciones-auxiliares)
 
 ## Introducción a los descriptores de archivo (fd)
 
@@ -220,7 +221,6 @@ El desarrollo de la función 'get next line' presentado en este manual es solo u
 * He priorizado la claridad y la robustez del código, lo que me ha permitido aprender y solucionar errores de manera efectiva.
 * Aunque es cierto que algunas líneas podrían ser reducidas y las funciones auxiliares podrían ser más dinámicas para hacer el código más compacto, he optado por un enfoque que maximiza la protección contra errores.
 * Sin embargo, animo a quienes acudais a este manual a explorar y entender otras posibles soluciones que puedan optimizar aún más el código.
-
 
 ## Funciones auxiliares
 
