@@ -226,7 +226,7 @@ El desarrollo de la función 'get next line' presentado en este manual es solo u
 
 ### ft_memcpy
 
-Esta función se utiliza para copiar bloques de memoria de un lugar a otro. En el contexto de get_next_line, se utiliza en la función que inicia la línea, para copiar una cadena a una nueva cadena de texto.c
+Esta función se utiliza para copiar bloques de memoria de un lugar a otro. En el contexto de get_next_line, se utiliza en la función que inicia la línea, para copiar una cadena a una nueva cadena de texto
 
 	void	*ft_memcpy(void *dst, const void *src, size_t n)
 	{
