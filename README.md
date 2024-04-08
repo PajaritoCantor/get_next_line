@@ -34,6 +34,8 @@
    5.4. [Heap](#Heap)
 
 6. [GET_NEXT_LINE](#get_next_line)
+   
+   6.1. [Funciones auxiliares](#Funciones_auxiliares)
 
 ## Introducción a los descriptores de archivo (fd)
 
@@ -210,7 +212,7 @@ La función get_next_line lee una línea desde un descriptor de archivo dado.
 - La línea se define como una secuencia de caracteres terminada por '\n' o EOF (fin de archivo).
 - La función se utiliza en un bucle para leer un archivo línea por línea.
 
-Funciones auxiliares
+## Funciones auxiliares
 
 1.1 ft_memcpy
 
