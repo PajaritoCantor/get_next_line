@@ -34,7 +34,7 @@
 
 6. [GET_NEXT_LINE](#get_next_line)
    
-   6.1. [ACLARACIÓN](#ACLARACIÓN)
+   6.1. [Aclaración](#Aclaración)
    
    6.2. [Funciones auxiliares](#Funciones-auxiliares)
 
@@ -213,7 +213,7 @@ La función get_next_line lee una línea desde un descriptor de archivo dado.
 - La línea se define como una secuencia de caracteres terminada por '\n' o EOF (fin de archivo).
 - La función se utiliza en un bucle para leer un archivo línea por línea.
 
-## ACLARACIÓN:
+## Aclaración:
 
 El desarrollo de la función 'get next line' presentado en este manual es solo una de las múltiples formas posibles de implementarlo. 
 * La programación es un campo amplio y flexible, y siempre hay múltiples enfoques para resolver un problema.
