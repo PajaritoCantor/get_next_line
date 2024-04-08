@@ -212,6 +212,16 @@ La función get_next_line lee una línea desde un descriptor de archivo dado.
 - La línea se define como una secuencia de caracteres terminada por '\n' o EOF (fin de archivo).
 - La función se utiliza en un bucle para leer un archivo línea por línea.
 
+## ACLARACIÓN:
+
+El desarrollo de la función 'get next line' presentado en este manual es solo una de las múltiples formas posibles de implementarlo. 
+* La programación es un campo amplio y flexible, y siempre hay múltiples enfoques para resolver un problema.
+* Este método ha sido elegido por su simplicidad y facilidad de comprensión, teniendo en cuenta mi nivel de experiencia como principiante.
+* He priorizado la claridad y la robustez del código, lo que me ha permitido aprender y solucionar errores de manera efectiva.
+* Aunque es cierto que algunas líneas podrían ser reducidas y las funciones auxiliares podrían ser más dinámicas para hacer el código más compacto, he optado por un enfoque que maximiza la protección contra errores.
+* Sin embargo, animo a quienes acudais a este manual a explorar y entender otras posibles soluciones que puedan optimizar aún más el código.
+
+
 ## Funciones auxiliares
 
 ### ft_memcpy
