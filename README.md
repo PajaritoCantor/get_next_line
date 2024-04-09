@@ -38,7 +38,8 @@
    
    6.1. [Funciones auxiliares](#Funciones-auxiliares)
 
-   6.1.1
+   6.1.1. [ft_memcpy](#ft_memcpy)
+   6.1.2. [ft_bzero](#ft_bzero) 
 
 ## Introducción a los descriptores de archivo (fd)
 
