@@ -397,7 +397,8 @@ Condiciones de compilación: Con las directivas #if, #ifdef, #ifndef, #else, #el
 
 Eliminación de comentarios: El preprocesador elimina todos los comentarios del código fuente.
 
-3. 1.
+## Funciones principales
+
 char *init_stash_line(char *temp_buffer, int *eol_loc) { size_t len; char *line_text;
 
 len = 0;
