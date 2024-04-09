@@ -46,6 +46,8 @@
    
    6.1.4 [ft_strjoin_gnl](#ft_strjoin_gnl)
 
+   6.2 [Funciones_principales](#Funciones-principales)
+
 ## Introducción a los descriptores de archivo (fd)
 
 Los descriptores de archivo son una parte integral de cómo los sistemas operativos interactúan con los archivos. 
@@ -318,6 +320,10 @@ Esta función se utiliza para copiar bloques de memoria de un lugar a otro.
 
 ### ft_strjoin_gnl
 
+* Esta función se utiliza para concatenar dos cadenas.
+* En get next line esta función se utiliza para unir la línea actual de texto con el buffer leído.
+* Esto es útil cuando una línea se extiende más allá del tamaño del buffer, por lo que necesitas leer el buffer varias veces y unir los resultados para obtener la línea completa.
+
 		char *ft_strjoin_gnl(char *s1, char *s2, int *eol_loc) { char *result; size_t len1; size_t len2;
 		
 		if (!s1 || !s2)
@@ -338,23 +344,26 @@ Esta función se utiliza para copiar bloques de memoria de un lugar a otro.
 		return (result);
 		}
 
-Esta función se utiliza para concatenar dos cadenas. En get_next_line, se utiliza en la función que extrae y lee una línea de texto, para concatenar el buffer leído del archivo a la línea.
+* Calcula la longitud de las dos cadenas de entrada.
+* Asigna memoria para la nueva cadena, que es la suma de las longitudes de las dos cadenas de entrada más 1 para el carácter nulo de terminación.
+* Copia la primera cadena a la nueva cadena.
+* Copia la segunda cadena a la nueva cadena, comenzando donde terminó la primera cadena.
+* Devuelve la nueva cadena.
 
-Calcula la longitud de las dos cadenas de entrada.
-Asigna memoria para la nueva cadena, que es la suma de las longitudes de las dos cadenas de entrada más 1 para el carácter nulo de terminación.
-Copia la primera cadena a la nueva cadena.
-Copia la segunda cadena a la nueva cadena, comenzando donde terminó la primera cadena.
-Devuelve la nueva cadena.
-3. Funciones principales
-Algunos conceptos:
-buffer_tmp: Es una cadena estática que almacena caracteres leídos, los cuales aún no se han devuelto. Se llena en cada llamada a la función get_next_line.
-eol_position: Es un puntero a entero que indica la ubicación del carácter de fin de línea ('\n') en buffer. Si no hay '\n', se establece en -1.
-line_text: Es una cadena que se devolverá. Se inicializa a partir de buffer_tmp y se le concatenan más caracteres hasta que se encuentra un '\n' o se llega al final del archivo.
-buffer: Es una región de memoria que almacena temporalmente los datos leídos. En get_next_line, se lee un bloque de datos en buffer, se busca un '\n', se extrae la línea y se prepara buffer para la próxima lectura. Esto permite la lectura en bloques y el manejo de líneas que son más largas que el tamaño de buffer.
-size_t: Es un tipo de dato entero sin signo que se utiliza para representar tamaños de objetos. Es el tipo de resultado devuelto por el operador sizeof.
-ssize_t: Es un tipo de dato entero con signo que se utiliza en ciertas funciones que pueden devolver un valor negativo, como read o write, donde un valor negativo indica un error.
-&: En el lenguaje de programación C, el operador & se utiliza para obtener la dirección de memoria de una variable o de un elemento específico en una matriz. Proporciona un puntero a la ubicación de memoria de la variable o elemento, permitiendo operaciones directas sobre esa ubicación de memoria.
+## Funciones principales
+   
+### Algunos conceptos básicos:
+
+**buffer_tmp:** Es una cadena estática que almacena caracteres leídos, los cuales aún no se han devuelto. Se llena en cada llamada a la función get_next_line.
+**eol_position:** Es un puntero a entero que indica la ubicación del carácter de fin de línea ('\n') en buffer. Si no hay '\n', se establece en -1.
+**line_text:** Es una cadena que se devolverá. Se inicializa a partir de buffer_tmp y se le concatenan más caracteres hasta que se encuentra un '\n' o se llega al final del archivo.
+**buffer:** Es una región de memoria que almacena temporalmente los datos leídos. En get_next_line, se lee un bloque de datos en buffer, se busca un '\n', se extrae la línea y se prepara buffer para la próxima lectura. Esto permite la lectura en bloques y el manejo de líneas que son más largas que el tamaño de buffer.
+**size_t:** Es un tipo de dato entero sin signo que se utiliza para representar tamaños de objetos. Es el tipo de resultado devuelto por el operador sizeof.
+**ssize_t:** Es un tipo de dato entero con signo que se utiliza en ciertas funciones que pueden devolver un valor negativo, como read o write, donde un valor negativo indica un error.
+**&:** En el lenguaje de programación C, el operador & se utiliza para obtener la dirección de memoria de una variable o de un elemento específico en una matriz. Proporciona un puntero a la ubicación de memoria de la variable o elemento, permitiendo operaciones directas sobre esa ubicación de memoria.
+
 Acerca del Header
+
 #ifndef GET_NEXT_LINE_BONUS_H y #define GET_NEXT_LINE_BONUS_H: Este es un mecanismo de protección contra la inclusión múltiple. Si el archivo de encabezado ya ha sido incluido previamente, la macro GET_NEXT_LINE_BONUS_H estará definida y el preprocesador ignorará el contenido del archivo hasta encontrar el #endif correspondiente. Esto previene problemas de redefinición y otros conflictos que pueden surgir por la inclusión múltiple de un archivo de encabezado.
 
 #ifndef BUFFER_SIZE y #define BUFFER_SIZE 512: Este bloque verifica si la macro BUFFER_SIZE ya está definida. Si no lo está, se define con el valor 512. BUFFER_SIZE puede ser utilizada en el código para especificar el tamaño de un buffer.
