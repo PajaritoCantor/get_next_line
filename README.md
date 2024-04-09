@@ -39,7 +39,12 @@
    6.1. [Funciones auxiliares](#Funciones-auxiliares)
 
    6.1.1. [ft_memcpy](#ft_memcpy)
-   6.1.2. [ft_bzero](#ft_bzero) 
+   
+   6.1.2. [ft_bzero](#ft_bzero)
+
+   6.1.3. [ft_strlcpy_gnl](#ft_strlcpy_gnl)
+   
+   6.1.4 [ft_strjoin_gnl](#ft_strjoin_gnl)
 
 ## Introducción a los descriptores de archivo (fd)
 
@@ -287,45 +292,51 @@ Esta función se utiliza para copiar bloques de memoria de un lugar a otro.
 
 ### ft_strlcpy_gnl
 
-void ft_strlcpy_gnl(char *dst, const char *src, size_t dstsize) { size_t i;
+* En tu código get_next_line, esta función se utiliza en dos lugares:
+* Para copiar el resto de la línea después del final de la línea al buffe temporal para su uso en la próxima llamada a get_next_line.
+* Para copiar la línea actual del buffer temporal a la línea de texto antes de leer más datos en el buffer temporal.
+  
 
-i = 0;
-if (dstsize > 0)
-{
-	while (src[i] && i < dstsize - 1)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-}
-}
+		void ft_strlcpy_gnl(char *dst, const char *src, size_t dstsize) 
+		{ 
+		size_t i;
+		
+		i = 0;
+		if (dstsize > 0)
+		{
+			while (src[i] && i < dstsize - 1)
+			{
+				dst[i] = src[i];
+				i++;
+			}
+			dst[i] = '\0';
+		}
 
-Esta función se utiliza para copiar una cadena a otra. Se utiliza en la función que inicializa una línea de texto para copiar el buffer a la línea de texto y en la función principal get_next_line, para copiar el resto del buffer despuès del carácter de fin de línea al buffer.
+* Compruebas si el tamaño de la cadena de destino es mayor que 0.
+* Copias hasta dstsize -1 caracteres de la cadena de origen a la cadena de destino.
+* Terminas la cadena de destino con '\0'
 
-Comprueba si el tamaño de la cadena de deestino es mayor que 0
-Copia hasta dstsize -1 caracteres de la cadena de origen a la cadena de destino
-Termina la cadena de destino con '\0'
-2. 1. 4.
-char *ft_strjoin_gnl(char *s1, char *s2, int *eol_loc) { char *result; size_t len1; size_t len2;
+### ft_strjoin_gnl
 
-if (!s1 || !s2)
-	return (NULL);
-len1 = ft_strlen(s1);
-len2 = ft_strlen(s2);
-result = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
-if (!result)
-{
-	free(s1);
-	return (NULL);
-}
-ft_memcpy(result, s1, len1);
-free(s1);
-ft_memcpy(result + len1, s2, len2 + 1);
-if (len1 + len2 > 0 && *(result + len1 + len2 - 1) == '\n')
-	*eol_loc = 0;
-return (result);
-}
+		char *ft_strjoin_gnl(char *s1, char *s2, int *eol_loc) { char *result; size_t len1; size_t len2;
+		
+		if (!s1 || !s2)
+			return (NULL);
+		len1 = ft_strlen(s1);
+		len2 = ft_strlen(s2);
+		result = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
+		if (!result)
+		{
+			free(s1);
+			return (NULL);
+		}
+		ft_memcpy(result, s1, len1);
+		free(s1);
+		ft_memcpy(result + len1, s2, len2 + 1);
+		if (len1 + len2 > 0 && *(result + len1 + len2 - 1) == '\n')
+			*eol_loc = 0;
+		return (result);
+		}
 
 Esta función se utiliza para concatenar dos cadenas. En get_next_line, se utiliza en la función que extrae y lee una línea de texto, para concatenar el buffer leído del archivo a la línea.
 
