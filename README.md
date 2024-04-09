@@ -34,9 +34,11 @@
 
 6. [GET_NEXT_LINE](#get_next_line)
    
-   6.1. [Aclaración](#Aclaración)
+    [Aclaración](#Aclaración)
    
-   6.2. [Funciones auxiliares](#Funciones-auxiliares)
+   6.1. [Funciones auxiliares](#Funciones-auxiliares)
+
+   6.1.1
 
 ## Introducción a los descriptores de archivo (fd)
 
@@ -226,7 +228,8 @@ El desarrollo de la función 'get next line' presentado en este manual es solo u
 
 ### ft_memcpy
 
-Esta función se utiliza para copiar bloques de memoria de un lugar a otro. En el contexto de get_next_line, se utiliza en la función que inicia la línea, para copiar una cadena a una nueva cadena de texto
+Esta función se utiliza para copiar bloques de memoria de un lugar a otro. 
+* En el contexto de get_next_line, se utiliza en la función que inicia la línea, para copiar una cadena a una nueva cadena de texto.
 
 	void	*ft_memcpy(void *dst, const void *src, size_t n)
 	{
@@ -241,22 +244,47 @@ Esta función se utiliza para copiar bloques de memoria de un lugar a otro. En e
 			*d++ = *s++;
 		return (dst);
 	}
-Asigna un puntero al inicio de la cadena de destino.
-Asigna un puntero al inicio de la cadena de origen.
-Comrpueba que destino e inicio no estén vacías. Si es así, returna NULL
-Castea las cadenas como unsigned char
-copia n bytes de la cadena de origen a la cadena de destino.
-Devuelve la cadena de destino
-ft_bzero
-void ft_bzero(void *s, size_t n) { while (n--) *(char *)s++ = 0; }
+ 
+* Asignas un puntero al inicio de la cadena de destino.
+* Asigna un puntero al inicio de la cadena de origen.
+* Comrpueba que destino e inicio no estén vacías. Si es así, returna NULL
+* Castea las cadenas como unsigned char
+* copia n bytes de la cadena de origen a la cadena de destino.
+* Devuelve la cadena de destino
 
-Vr a un puntero de tipo void
 
-Establece los primeros n bytes de memoria a '\0'.
+### ft_bzero
 
-Esta función se utiliza para inicializar bloques de memoria. Se utiliza en la función donde leemos y extraemos una línea de texto, para inicializar el buffer antes de leer del archivo y para limpiar cuando se ha llegado al final del archivo
+* Aplicada a get_next_line, esta función se utiliza para limpiar el buffer antes de leer datos en él con la función read. 
+* Esto es importante para asegurarse de que los datos de lecturas anteriores no interfieran con los datos actuales que se están leyendo.
+* También se utiliza para limpiar el buffer temporal cuando se encuentra un error de lectura o al final de la lectura.
+* Esto ayuda a mantener la integridad de los datos y a evitar posibles errores o comportamientos inesperados.
 
-. ft_strlcpy_gnl**
+  
+		void ft_bzero(void *s, size_t n) 
+		{ 
+		while (n--) 
+		*(char *)s++ = 0; 
+		}
+
+#### Ventajas:
+
+**Control preciso:** 
+
+* ft_bzero te permite tener un control preciso sobre cuántos bytes quieres poner a cero. 
+* Esto es útil cuando solo necesitas limpiar una parte específica de la memoria.
+  
+**Rapidez:**
+* ft_bzero es generalmente más rápido que calloc para bloques de memoria pequeños porque no necesita asignar memoria.
+
+#### Desventajas:
+
+* No asigna memoria: A diferencia de *calloc*, ft_bzero no asigna memoria.
+* Solo pone a cero la memoria ya asignada.
+* Si necesitas asignar y poner a cero la memoria al mismo tiempo, tendrías que usar una función de asignación de memoria (como malloc) y luego ft_bzero, lo cual requiere dos llamadas a funciones en lugar de una.
+
+
+### ft_strlcpy_gnl
 
 void ft_strlcpy_gnl(char *dst, const char *src, size_t dstsize) { size_t i;
 
