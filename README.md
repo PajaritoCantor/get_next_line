@@ -48,9 +48,9 @@
 
    6.2 [Funciones_principales](#Funciones-principales)
 
-   6.2.1. [Algunos_conceptos_básicos](#Algunos_conceptos_básicos)
+   6.2.1. [Algunos_conceptos_básicos](#Algunos-conceptos-básicos)
 
-   6.2.2. [Aclaraciones_sobre_mi_archivo_.c](#Aclaraciones-sobre-mi-archivo-.h)
+   6.2.2. [Aclaraciones_sobre_mi_archivo_.h](#Aclaraciones-sobre-mi-archivo-.h)
 
 ## Introducción a los descriptores de archivo (fd)
 
