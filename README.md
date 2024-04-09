@@ -50,7 +50,7 @@
 
    6.2.1. [Algunos conceptos básicos](#Algunos-conceptos-básicos)
 
-   6.2.2. [Aclaraciones sobre mi archivo .h](#Aclaraciones-sobre-mi-archivo-.h)
+   6.2.2. [Aclaraciones sobre mi archivo header](#Aclaraciones-sobre-mi-archivo-header)
 
 ## Introducción a los descriptores de archivo (fd)
 
