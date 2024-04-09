@@ -376,7 +376,7 @@ Esta función se utiliza para copiar bloques de memoria de un lugar a otro.
 
 **static:** Es una palabra clave en C que se utiliza para dar a las variables una duración de almacenamiento estático, lo que significa que mantienen su valor entre las llamadas a funciones.
 
-### Aclaraciones sobre mi archivo .h
+### Aclaraciones sobre mi archivo header
 
 #ifndef BUFFER_SIZE y #define BUFFER_SIZE 512: Este bloque verifica si la macro BUFFER_SIZE ya está definida. Si no lo está, se define con el valor 512. BUFFER_SIZE puede ser utilizada en el código para especificar el tamaño de un buffer.
 
